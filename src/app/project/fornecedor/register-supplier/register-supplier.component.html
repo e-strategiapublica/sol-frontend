@@ -20,11 +20,11 @@
 
                     <div class="row">
 
-                        <div class="col-sm-12 col-md-5 mt-3">
+                        <div class="col-sm-12 col-md-6 mt-3">
                             <label for="name"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.NAME'
+                                class="font-archivo font-size-16 m-0"><b>{{'REGISTER_SUPPLIER.NAME'
                                     | translate}}</b></label>
-                            <input type="text" formControlName="name" style="text-indent:20px;" class="form-control"
+                            <input type="text" formControlName="name" class="form-control"
                                 id="name" placeholder="{{'REGISTER_SUPPLIER.NAME' | translate}}">
 
                             <div *ngIf="form.controls['name'].errors?.['required'] && isSubmit"
@@ -41,9 +41,9 @@
                             </div>
                         </div>                        
 
-                        <div class="col-sm-12 col-md-3 mt-3">
+                        <div class="col-sm-12 col-md-6 mt-3">
                             <label for="type"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.TYPE'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.TYPE'
                                     | translate}}</b></label>
                             <select type="text" formControlName="type" style="text-indent:20px;" class="form-control"
                                 id="type">
@@ -62,7 +62,7 @@
 
                         <div *ngIf="form.controls['type']?.value == 'cnpj'" class="col-sm-12 col-md-4 mt-3">
                             <label for="mainCnpj"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>CNPJ</b></label>
+                                class="font-archivo font-size-16  m-0"><b>CNPJ</b></label>
                             <input type="text" (keyup)="validCnpj()" formControlName="mainCnpj"
                                 style="text-indent:20px;" class="form-control" mask="00.000.000/0000-00" id="mainCnpj"
                                 placeholder="00.000.000/0000-00">
@@ -83,7 +83,7 @@
 
                         <div *ngIf="form.controls['type']?.value == 'cpf'" class="col-sm-12 col-md-4 mt-3">
                             <label for="mainCpf"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>CPF</b></label>
+                                class="font-archivo font-size-16  m-0"><b>CPF</b></label>
                             <input type="text" formControlName="mainCpf" style="text-indent:20px;" class="form-control"
                                 mask="000.000.000-00" id="mainCpf" placeholder="000.000.000-00">
 
@@ -115,7 +115,7 @@
 
                         <div class="col-sm-12 col-md-4 mt-3">
                             <label for="zipCode"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.ZIP_CODE'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.ZIP_CODE'
                                     | translate}}</b></label>
                             <input type="text" formControlName="zipCode" style="text-indent:20px;" class="form-control"
                                 mask="00.000-000" id="zipCode" placeholder="00.000-000"
@@ -137,7 +137,7 @@
 
                         <div class="col-sm-12 col-md-5 mt-3">
                             <label for="publicPlace"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.PUBLIC_PLACE'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.PUBLIC_PLACE'
                                     | translate}}</b></label>
                             <input type="text" formControlName="publicPlace" style="text-indent:20px;"
                                 class="form-control" id="publicPlace"
@@ -153,7 +153,7 @@
 
                         <div class="col-sm-12 col-md-3 mt-3">
                             <label for="number"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.NUMBER'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.NUMBER'
                                     | translate}}</b></label>
                             <input type="text" formControlName="number" style="text-indent:20px;" class="form-control"
                                 id="number" placeholder="000" #addressnumber (focusout)="getLatLong($event)">
@@ -168,7 +168,7 @@
 
                         <div class="col-sm-12 col-md-4 mt-3">
                             <label for="state"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.STATE'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.STATE'
                                     | translate}}</b></label>
                             <input type="text" formControlName="state" style="text-indent:20px;" class="form-control"
                                 id="state" placeholder="{{'REGISTER_SUPPLIER.STATE'  | translate}}">
@@ -183,7 +183,7 @@
 
                         <div class="col-sm-12 col-md-4 mt-3">
                             <label for="city"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.COUNTY'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.COUNTY'
                                     | translate}}</b></label>
                             <input type="text" formControlName="city" style="text-indent:20px;" class="form-control"
                                 id="city" placeholder="{{'REGISTER_SUPPLIER.COUNTY'  | translate}}">
@@ -198,7 +198,7 @@
 
                         <div class="col-sm-12 col-md-4 mt-3">
                             <label for="neighborhood"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.NEIGHBORHOOD'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.NEIGHBORHOOD'
                                     | translate}}</b></label>
                             <input type="text" formControlName="neighborhood" style="text-indent:20px;"
                                 class="form-control" id="neighborhood"
@@ -214,7 +214,7 @@
 
                         <!-- <div class="col-sm-12 col-md-6 mt-3">
                             <label for="latitude"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.LATITUDE'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.LATITUDE'
                                     | translate}}</b></label>
                             <input type="text" formControlName="latitude" style="text-indent:20px;" class="form-control"
                                 id="latitude" placeholder="{{'REGISTER_SUPPLIER.LATITUDE'  | translate}}">
@@ -229,7 +229,7 @@
 
                         <!-- <div class="col-sm-12 col-md-6 mt-3">
                             <label for="longitude"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.LONGITUDE'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.LONGITUDE'
                                     | translate}}</b></label>
                             <input type="text" formControlName="longitude" style="text-indent:20px;"
                                 class="form-control" id="longitude"
@@ -245,7 +245,7 @@
 
                         <div class="col-sm-12 col-md-6 mt-3">
                             <label for="complement"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.COMPLEMENT'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.COMPLEMENT'
                                     | translate}}</b></label>
                             <input type="text" formControlName="complement" style="text-indent:20px;"
                                 class="form-control" id="complement"
@@ -254,7 +254,7 @@
 
                         <div class="col-sm-12 col-md-6 mt-3">
                             <label for="referencePoint"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.REFERENCE_POINT'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.REFERENCE_POINT'
                                     | translate}}</b></label>
                             <input type="text" formControlName="referencePoint" style="text-indent:20px;"
                                 class="form-control" id="referencePoint"
@@ -277,7 +277,7 @@
 
                         <div class="col-sm-12 col-md-5 mt-3">
                             <label for="name"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.NAME'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.NAME'
                                     | translate}}</b></label>
                             <input type="text" formControlName="name" style="text-indent:20px;" class="form-control"
                                 id="name" placeholder="{{'REGISTER_SUPPLIER.NAME'  | translate}}">
@@ -290,9 +290,34 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-12 col-md-4 mt-3">
+                        <div class="col-sm-12 col-md-3 mt-3">
+                          <label for="cpf"
+                              class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.ID_NUMBER'
+                                  | translate}}</b></label>
+                          <input type="text" formControlName="cpf" style="text-indent:20px;" class="form-control"
+                              mask="000.000.000-00" id="cpf" placeholder="000.000.000-00">
+
+                          <div *ngIf="form.controls['mainCpf'].errors?.['required'] && isSubmit || regex.test(formLegalRepresentative.controls['cpf']?.value)"
+                              class="div-msg-error mt-2">
+                              <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
+                              <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.ID_NUMBER_MANDATORY' |
+                                  translate}}</p>
+                          </div>
+                          <div *ngIf="formLegalRepresentative.controls['cpf'].errors?.['minlength'] && isSubmit"
+                              class="div-msg-error mt-2">
+                              <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
+                              <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.ID_NUMBER_INVALID' |
+                                  translate}}</p>
+                          </div>
+                          <div *ngIf="isCPFInvalidAndTouchedRepresentative()" class="div-msg-error mt-2">
+                              <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
+                              <p class="font-poppins font-size-14 m-0">{{"INVALID_ID_DOCUMENT.TITLE" | translate}}</p>
+                          </div>
+                      </div>
+
+                        <div class="col-sm-12 col-md-2 mt-3">
                             <label for="nationality"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.NATIONALITY'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.NATIONALITY'
                                     | translate}}</b></label>
                             <input type="text" formControlName="nationality" style="text-indent:20px;"
                                 class="form-control" id="nationality"
@@ -306,9 +331,9 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-12 col-md-3 mt-3">
+                        <div class="col-sm-12 col-md-2 mt-3">
                             <label for="maritalStatus"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.MARITAL_STATUS'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.MARITAL_STATUS'
                                     | translate}}</b></label>
                             <select type="text" formControlName="maritalStatus" style="text-indent:20px;"
                                 class="form-control" id="maritalStatus">
@@ -329,34 +354,11 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-12 col-md-3 mt-3">
-                            <label for="cpf"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.ID_NUMBER'
-                                    | translate}}</b></label>
-                            <input type="text" formControlName="cpf" style="text-indent:20px;" class="form-control"
-                                mask="000.000.000-00" id="cpf" placeholder="000.000.000-00">
-
-                            <div *ngIf="form.controls['mainCpf'].errors?.['required'] && isSubmit || regex.test(formLegalRepresentative.controls['cpf']?.value)"
-                                class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.ID_NUMBER_MANDATORY' |
-                                    translate}}</p>
-                            </div>
-                            <div *ngIf="formLegalRepresentative.controls['cpf'].errors?.['minlength'] && isSubmit"
-                                class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.ID_NUMBER_INVALID' |
-                                    translate}}</p>
-                            </div>
-                            <div *ngIf="isCPFInvalidAndTouchedRepresentative()" class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{"INVALID_ID_DOCUMENT.TITLE" | translate}}</p>
-                            </div>
-                        </div>
+                        
 
 <!--                         <div class="col-sm-12 col-md-3 mt-3">
                             <label for="rg"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.BRAZILIAN_IDENTITY_CARD'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.BRAZILIAN_IDENTITY_CARD'
                                     | translate}}</b></label>
                             <input type="text" formControlName="rg" style="text-indent: 20px;" class="form-control"
                                 id="rg" placeholder="000000-0" (input)="onRGInput($event)">
@@ -375,7 +377,7 @@
                         </div> -->
  <!--                        <div class="col-sm-12 col-md-3 mt-3">
                             <label for="document_origin"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>Orgão
+                                class="font-archivo font-size-16  m-0"><b>Orgão
                                     expedidor</b></label>
                             <input type="text" formControlName="document_origin" style="text-indent:20px;"
                                 class="form-control" maxlength="6" id="document_origin" placeholder="ex.:SSP/RN">
@@ -390,7 +392,7 @@
 
 <!--                         <div class="col-sm-12 col-md-3 mt-3">
                             <label for="validityData"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.DATE_VALIDITY'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.DATE_VALIDITY'
                                     | translate}}</b></label>
                             <input type="date" formControlName="validityData" style="text-indent:20px;"
                                 class="form-control" id="validityData">
@@ -416,9 +418,9 @@
 
                     <div class="row">
 
-                        <div class="col-sm-12 col-md-4 mt-3">
+                        <div class="col-sm-12 col-md-3 mt-3">
                             <label for="zipCode"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.ZIP_CODE'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.ZIP_CODE'
                                     | translate}}</b></label>
                             <input type="text" formControlName="zipCode" style="text-indent:20px;" class="form-control"
                                 mask="00.000-000" id="zipCode" placeholder="00.000-000"
@@ -438,9 +440,9 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-12 col-md-5 mt-3">
+                        <div class="col-sm-12 col-md-6 mt-3">
                             <label for="publicPlace"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.PUBLIC_PLACE'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.PUBLIC_PLACE'
                                     | translate}}</b></label>
                             <input type="text" formControlName="publicPlace" style="text-indent:20px;"
                                 class="form-control" id="publicPlace"
@@ -456,7 +458,7 @@
 
                         <div class="col-sm-12 col-md-3 mt-3">
                             <label for="number"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.NUMBER'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.NUMBER'
                                     | translate}}</b></label>
                             <input type="text" formControlName="number" style="text-indent:20px;" class="form-control"
                                 id="number" placeholder="000" #addressnumberlegal>
@@ -471,7 +473,7 @@
 
                         <div class="col-sm-12 col-md-4 mt-3">
                             <label for="state"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.STATE'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.STATE'
                                     | translate}}</b></label>
                             <input type="text" formControlName="state" style="text-indent:20px;" class="form-control"
                                 id="state" placeholder="{{'REGISTER_SUPPLIER.STATE'  | translate}}">
@@ -486,7 +488,7 @@
 
                         <div class="col-sm-12 col-md-4 mt-3">
                             <label for="city"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.COUNTY'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.COUNTY'
                                     | translate}}</b></label>
                             <input type="text" formControlName="city" style="text-indent:20px;" class="form-control"
                                 id="city" placeholder="{{'REGISTER_SUPPLIER.COUNTY'  | translate}}">
@@ -501,7 +503,7 @@
 
                         <div class="col-sm-12 col-md-4 mt-3">
                             <label for="neighborhood"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.NEIGHBORHOOD'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.NEIGHBORHOOD'
                                     | translate}}</b></label>
                             <input type="text" formControlName="neighborhood" style="text-indent:20px;"
                                 class="form-control" id="neighborhood"
@@ -517,7 +519,7 @@
 
                         <div class="col-sm-12 col-md-6 mt-3">
                             <label for="complement"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.COMPLEMENT'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.COMPLEMENT'
                                     | translate}}</b></label>
                             <input type="text" formControlName="complement" style="text-indent:20px;"
                                 class="form-control" id="complement"
@@ -526,7 +528,7 @@
 
                         <div class="col-sm-12 col-md-6 mt-3">
                             <label for="referencePoint"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.REFERENCE_POINT'
+                                class="font-archivo font-size-16  m-0"><b>{{'REGISTER_SUPPLIER.REFERENCE_POINT'
                                     | translate}}</b></label>
                             <input type="text" formControlName="referencePoint" style="text-indent:20px;"
                                 class="form-control" id="referencePoint"
@@ -545,7 +547,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-12 col-md-8">
+                        <div class="col-sm-12 col-md-10">
                             <select type="text" formControlName="categories" style="text-indent:20px;"
                                 class="form-control" id="categories">
                                 <option selected readonly disabled [value]="''">{{'REGISTER_SUPPLIER.SELECT' |
@@ -560,9 +562,9 @@
                                     translate}}</p>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <button (click)="handleCategories();" type="submit"
-                                class="btn btn-primary btn-lg btn-block mb-4">{{'REGISTER_SUPPLIER.ADD' |
+                              class="btn btn-custom btn-lg btn-block">{{'REGISTER_SUPPLIER.ADD' |
                                 translate}}</button>
                         </div>
 
@@ -579,7 +581,7 @@
                     </div>
                 </form>
 
-                <div class="mt-5">
+                <div class="mt-5 mr-5">
                     <div class="row">
                         <div class="col-md-6">
                             <a (click)="cancel()" type="button"
@@ -589,7 +591,7 @@
                         </div>
                         <div class="col-md-6">
                             <button (click)="onSubmit();" type="submit"
-                                class="btn btn-primary btn-lg btn-block mb-4">{{'REGISTER_SUPPLIER.CREATE_SUPPLIER' |
+                              class="btn btn-custom btn-lg btn-block">{{'REGISTER_SUPPLIER.CREATE_SUPPLIER' |
                                 translate}}</button>
                         </div>
                     </div>
@@ -598,3 +600,4 @@
         </div>
     </div>
 </div>
+<!-- text - font-weight-medium text-secondary -->

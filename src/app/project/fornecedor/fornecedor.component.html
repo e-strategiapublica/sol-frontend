@@ -8,29 +8,32 @@
   <form [formGroup]="form">
     <div class="row mt-4">
       <div class="col-md-9">
-        <input type="text" class="form-control text-secondary input-height-border" formControlName="search"
+        <input type="text" class="form-control form-control-lg text-secondary input-height-border" 
+          formControlName="search"
           placeholder="{{'SUPPLIER.SEARCH_NAME' | translate}}">
       </div>
       <div class="col-md-3" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
-        <button type="button" class="btn btn-primary btn-lg btn-block"
-          [routerLink]="['/pages/fornecedor/registrar-fornecedor']">{{'SUPPLIER.NEW_SUPPLIER' | translate}}</button>
+        <button type="button" class="btn btn-custom btn-lg btn-block"
+          [routerLink]="['/pages/fornecedor/registrar-fornecedor']">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          {{'SUPPLIER.NEW_SUPPLIER' | translate}}
+        </button>
       </div>
-
     </div>
 
     <div class="row mt-4">
       <div class="col-md-12">
         <div class="table-responsive-sm">
-          <table class="table table-hover">
-            <thead>
+          <table class="table table-hover table-bordered shadow-sm rounded">
+            <thead >
               <tr>
-                <th class="br-tabele bg-pattern text-light" scope="col">{{'SUPPLIER.NAME' | translate}}</th>
-                <th class="bg-pattern text-light" scope="col">{{'SUPPLIER.DOCUMENT' | translate}}</th>
-                <th class="bg-pattern text-light" scope="col">{{'SUPPLIER.COUNTY' | translate}}</th>
-                <th class="bg-pattern text-light" scope="col"></th>
-                <th class="bg-pattern text-light" scope="col"></th>
-                <th class="bg-pattern text-light" scope="col"  *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'"></th>
-                <th class="bg-pattern text-light" scope="col"  *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'"></th>
+                <th class="br-tabele" scope="col">{{'SUPPLIER.NAME' | translate}}</th>
+                <th class="" scope="col">{{'SUPPLIER.DOCUMENT' | translate}}</th>
+                <th class="" scope="col">{{'SUPPLIER.COUNTY' | translate}}</th>
+                <th class="" scope="col"></th>
+                <th class="" scope="col"></th>
+                <th class="" scope="col"  *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'"></th>
+                <th class="" scope="col"  *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'"></th>
               </tr>
             </thead>
             <tbody>
@@ -43,7 +46,9 @@
                   {{item.cpf}}</td>
                 <td class="text-capitalize" (click)="navigateToItem(item._id)">
                   {{item.address.city}}</td>
-                  <td [routerLink]="['/pages/fornecedor/dados-fornecedor/' + item._id]" ><i class="bi bi-eye-fill"></i></td>
+                <td class="btn btn-sm btn-outline-dark" [routerLink]="['/pages/fornecedor/dados-fornecedor/' + item._id]" >
+                  <i class="bi bi-eye-fill"></i>
+                </td>
                 <td *ngIf="item.blocked == true" class="text-capitalize">
                   <img src="../../../assets/images/blocked-icon.svg" style="max-height: 20px; max-width: 20px;" alt>
                 </td>
@@ -52,15 +57,15 @@
                 </td>
                 <td class="table_icon" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
                   <button [routerLink]="['/pages/fornecedor/editar-fornecedor/' + item._id]"
-                    class="btn btn-secondary">
+                    class="btn btn-sm ml-2">
 
                     <!-- /pages/associacao/editar-associacao/ -->
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <i class="fa fa-pencil text-info" aria-hidden="true"></i>
                   </button>
                 </td>
                 <td class="table_icon" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
-                  <button class="btn btn-danger" (click)="openModal(item)">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <button class="btn btn-sm ml-2" (click)="openModal(item)">
+                    <i class="fa fa-trash danger-text" aria-hidden="true"></i>
                   </button>
                 </td>
               </tr>
@@ -69,8 +74,12 @@
 
           </table>
           <div class="row">
-            <div class="col-md-12"> <pagination-controls (pageChange)="currentPage= $event" previousLabel="{{'BUTTON_TEXT.PREVIOUS' | translate}}"
-                nextLabel="{{'BUTTON_TEXT.NEXT' | translate}}"></pagination-controls>
+            <div class="col-md-12 d-flex justify-content-between">
+              <pagination-controls 
+                (pageChange)="currentPage= $event" 
+                previousLabel="{{'BUTTON_TEXT.PREVIOUS' | translate}}"
+                nextLabel="{{'BUTTON_TEXT.NEXT' | translate}}">
+              </pagination-controls>
             </div>
           </div>
         </div>
