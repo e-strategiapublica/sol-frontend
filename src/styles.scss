@@ -146,15 +146,17 @@ input:focus {
   background-color: rgb(6, 31, 49);
 }
 .bg-sidebar {
-  background-color: #032a46;
-  // background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    // linear-gradient(172.85deg, #5EA7DE -11.2%, #215B85 51.82%);
+  // background-color: #032a46;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(172.85deg, #3476a9 -11.2%, #313436 51.82%);
 }
 
 .bg-navbar {
-  background-color: #062235;
+  // background-color: #062235;
   // background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
   // linear-gradient(270deg, #5EA7DE -11.2%, #215B85 51.82%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(172.85deg, #3476a9 -11.2%, #313436 51.82%);
 }
 
 .color-dark {

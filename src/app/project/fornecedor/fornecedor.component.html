@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row mt-5">
-    <div class="col-md-12">
-      <h2>{{'SUPPLIER.SUPPLIER' | translate}}</h2>
+    <div class="col-md-12 text-center">
+      <h2 class="text-primary">{{'SUPPLIER.SUPPLIER' | translate}}</h2>
       <hr class="bg-secondary">
     </div>
   </div>
@@ -13,9 +13,9 @@
           placeholder="{{'SUPPLIER.SEARCH_NAME' | translate}}">
       </div>
       <div class="col-md-3" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
-        <button type="button" class="btn btn-custom btn-lg btn-block"
+        <button type="button" class="btn btn-primary btn-lg btn-block"
           [routerLink]="['/pages/fornecedor/registrar-fornecedor']">
-          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="bi bi-plus-circle"></i>
           {{'SUPPLIER.NEW_SUPPLIER' | translate}}
         </button>
       </div>
@@ -25,58 +25,50 @@
       <div class="col-md-12">
         <div class="table-responsive-sm">
           <table class="table table-hover table-bordered shadow-sm rounded">
-            <thead >
+            <thead class="thead-light">
               <tr>
-                <th class="br-tabele" scope="col">{{'SUPPLIER.NAME' | translate}}</th>
-                <th class="" scope="col">{{'SUPPLIER.DOCUMENT' | translate}}</th>
-                <th class="" scope="col">{{'SUPPLIER.COUNTY' | translate}}</th>
-                <th class="" scope="col"></th>
-                <th class="" scope="col"></th>
-                <th class="" scope="col"  *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'"></th>
-                <th class="" scope="col"  *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'"></th>
+                <th scope="col">{{'SUPPLIER.NAME' | translate}}</th>
+                <th scope="col">{{'SUPPLIER.DOCUMENT' | translate}}</th>
+                <th scope="col">{{'SUPPLIER.COUNTY' | translate}}</th>
+                <th scope="col" class="text-center"></th>
+                <th scope="col" class="text-center"></th>
+                <th scope="col" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'" class="text-center"></th>
+                <th scope="col" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'" class="text-center"></th>
               </tr>
             </thead>
             <tbody>
-              <tr
-                *ngFor="let item of fornecedorFilter | paginate: { itemsPerPage: itensPerPage, currentPage: currentPage }; let i= index;">
-                <th class="text-capitalize"
-                (click)="navigateToItem(item._id)"
-                  scope="row" (click)="navigateToItem(item._id)">{{item.name}}</th>
-                <td class="text-capitalize" (click)="navigateToItem(item._id)">
-                  {{item.cpf}}</td>
-                <td class="text-capitalize" (click)="navigateToItem(item._id)">
-                  {{item.address.city}}</td>
-                <td class="btn btn-sm btn-outline-dark" [routerLink]="['/pages/fornecedor/dados-fornecedor/' + item._id]" >
-                  <i class="bi bi-eye-fill"></i>
-                </td>
-                <td *ngIf="item.blocked == true" class="text-capitalize">
-                  <img src="../../../assets/images/blocked-icon.svg" style="max-height: 20px; max-width: 20px;" alt>
-                </td>
-                <td *ngIf="item.blocked == false" class="text-capitalize">
-                  <div style="max-height: 20px;"></div>
-                </td>
-                <td class="table_icon" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
-                  <button [routerLink]="['/pages/fornecedor/editar-fornecedor/' + item._id]"
-                    class="btn btn-sm ml-2">
-
-                    <!-- /pages/associacao/editar-associacao/ -->
-                    <i class="fa fa-pencil text-info" aria-hidden="true"></i>
+              <tr *ngFor="let item of fornecedorFilter | paginate: { itemsPerPage: itensPerPage, currentPage: currentPage }; let i= index;">
+                <th class="text-capitalize" (click)="navigateToItem(item._id)" scope="row">{{item.name}}</th>
+                <td class="text-capitalize" (click)="navigateToItem(item._id)">{{item.cpf}}</td>
+                <td class="text-capitalize" (click)="navigateToItem(item._id)">{{item.address.city}}</td>
+                <td class="text-center">
+                  <button class="btn btn-info" [routerLink]="['/pages/fornecedor/dados-fornecedor/' + item._id]">
+                    <i class="bi bi-eye"></i>
                   </button>
                 </td>
-                <td class="table_icon" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
-                  <button class="btn btn-sm ml-2" (click)="openModal(item)">
-                    <i class="fa fa-trash danger-text" aria-hidden="true"></i>
+                <td *ngIf="item.blocked" class="text-center">
+                  <img src="../../../assets/images/blocked-icon.svg" alt="Blocked" style="max-height: 20px; max-width: 20px;">
+                </td>
+                <td *ngIf="!item.blocked" class="text-center">
+                  <div style="max-height: 20px;"></div>
+                </td>
+                <td class="text-center" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
+                  <button [routerLink]="['/pages/fornecedor/editar-fornecedor/' + item._id]" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                </td>
+                <td class="text-center" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
+                  <button class="btn btn-danger" (click)="openModal(item)">
+                    <i class="bi bi-trash"></i>
                   </button>
                 </td>
               </tr>
-
             </tbody>
-
           </table>
           <div class="row">
             <div class="col-md-12 d-flex justify-content-between">
               <pagination-controls 
-                (pageChange)="currentPage= $event" 
+                (pageChange)="currentPage = $event" 
                 previousLabel="{{'BUTTON_TEXT.PREVIOUS' | translate}}"
                 nextLabel="{{'BUTTON_TEXT.NEXT' | translate}}">
               </pagination-controls>

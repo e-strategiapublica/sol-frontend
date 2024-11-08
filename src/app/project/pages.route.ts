@@ -107,6 +107,7 @@ import { ReportGeneratedComponent } from "./report-generated/report-generated.co
 import { LicitacoesRevisaoComponent } from "./gestor-projeto-licitacoes/licitacoes-revisao/licitacoes-revisao.component";
 import { LicitacoesVisualizacaoComponent } from "./gestor-projeto-licitacoes/licitacoes-visualizacao/licitacoes-visualizacao.component";
 import { AdminLicitacaoViewProposalComponent } from "./admin-licitacao-view-proposal/admin-licitacao-view-proposal.component";
+import { RankingComponent } from "../components/ranking/ranking.component";
 
 
 const routerConfig: Routes = [
@@ -115,6 +116,7 @@ const routerConfig: Routes = [
     component: PagesAppComponent,
     children: [
       { path: "dashboard", component: DashboardComponent },
+      { path: "ranking", component: RankingComponent },
       { path: "profile", component: ProfileComponent },
       { path: "update-profile", component: UpdateProfileComponent },
       { path: "notifications", component: NotificationsComponent },

@@ -16,8 +16,11 @@
           [routerLink]="['/pages/controle-fornecedor/registrar-usuario']">{{"BUTTON_TEXT.NEW_USER" | translate}}</button>
       </div>
       <div class="col-md-3" *ngIf="authService.getAuthenticatedUser().type === 'administrador'">
-        <button type="button" class="btn btn-primary btn-lg btn-block"
-          [routerLink]="['/pages/controle-fornecedor/registrar-usuario']">{{"BUTTON_TEXT.NEW_USER" | translate}}</button>
+        <button type="button" class="btn btn-custom btn-lg btn-block"
+          [routerLink]="['/pages/controle-fornecedor/registrar-usuario']">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          {{"BUTTON_TEXT.NEW_USER" | translate}}
+        </button>
       </div>
 
     </div>
@@ -25,16 +28,16 @@
     <div class="row mt-4">
       <div class="col-md-12">
         <div class="table-responsive-sm">
-          <table class="table table-hover">
+          <table class="table table-hover table-bordered shadow-sm rounded">
             <thead>
               <tr>
-                <th class="br-tabele bg-pattern text-light" scope="col">{{"PROFILE.PROFILE_NAME" | translate}}</th>
-                <th class="bg-pattern text-light" scope="col">{{"REGISTER_SUPPLIER.CPF_CNPJ" | translate}}</th>
-                <th class="bg-pattern text-light" scope="col">{{"SIDEBAR.SUPPLIERS" | translate}}</th>
-                <th class="bg-pattern text-light" scope="col">E-mail</th>
-                <th class="bg-pattern text-light" scope="col"></th>
-                <th class="bg-pattern text-light" scope="col"></th>
-                <th class=" bg-pattern text-light" scope="col"></th>
+                <th class="br-tabele " scope="col">{{"PROFILE.PROFILE_NAME" | translate}}</th>
+                <th class="" scope="col">{{"REGISTER_SUPPLIER.CPF_CNPJ" | translate}}</th>
+                <th class="" scope="col">{{"SIDEBAR.SUPPLIERS" | translate}}</th>
+                <th class="" scope="col">E-mail</th>
+                <th class="" scope="col"></th>
+                <th class="" scope="col"></th>
+                <th class=" " scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -57,7 +60,9 @@
                   {{item.supplier}}</td>
 
                 <td (click)="navigateToItem(item._id)">{{item.email}}</td>
-                <td [routerLink]="['/pages/controle-fornecedor/dados-usuario/' + item._id]"><i class="bi bi-eye-fill"></i></td>
+                <td class="btn btn-sm btn-outline-dark" [routerLink]="['/pages/controle-fornecedor/dados-usuario/' + item._id]">
+                  <i class="bi bi-eye-fill"></i>
+                </td>
                 <td class="table_icon" *ngIf="authService.getAuthenticatedUser().type === 'project_manager' && authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
                   <button [routerLink]="['/pages/controle-fornecedor/editar-usuario/' + item._id]"
                     class="btn btn-outline-secondary">
@@ -66,18 +71,18 @@
                 </td>
                 <td class="table_icon" *ngIf="authService.getAuthenticatedUser().type === 'administrador'">
                   <button [routerLink]="['/pages/controle-fornecedor/editar-usuario/' + item._id]"
-                    class="btn btn-outline-secondary">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    class="btn btn-sm ml-2">
+                    <i class="fa fa-pencil text-info" aria-hidden="true"></i>
                   </button>
                 </td>
                 <td class="table_icon" *ngIf="authService.getAuthenticatedUser().type === 'project_manager' && authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
-                  <button class="btn btn-danger" (click)="openModal(item)">
+                  <button class="btn btn-sm ml-2" (click)="openModal(item)">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                   </button>
                 </td>
                 <td class="table_icon" *ngIf="authService.getAuthenticatedUser().type === 'administrador'">
-                  <button class="btn btn-danger" (click)="openModal(item)">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <button class="btn btn-sm ml-2" (click)="openModal(item)">
+                    <i class="fa fa-trash danger-text" aria-hidden="true"></i>
                   </button>
                 </td>
               </tr>

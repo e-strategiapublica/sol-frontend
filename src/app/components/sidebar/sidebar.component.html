@@ -11,7 +11,13 @@
     <button (click)="hideSiderbar()" [routerLink]="['/pages/dashboard']" routerLinkActive="active" class="border-0 bg-transparent d-flex align-items-center list-group-item
       list-group-item-action text-white">
       <i class="fa fa-bars pr-2" aria-hidden="true" style="width: 28px"></i>
-      Dashboard
+      {{"SIDEBAR.DASHBOARD" | translate}}
+    </button>
+
+    <button (click)="hideSiderbar()" [routerLink]="['/pages/ranking']" routerLinkActive="active" class="border-0 bg-transparent d-flex align-items-center list-group-item
+      list-group-item-action text-white">
+      <i class="fa fa-bars pr-2" aria-hidden="true" style="width: 28px"></i>
+      {{"SIDEBAR.RANKING" | translate}}
     </button>
 
     <button (click)="hideSiderbar()" [routerLink]="['/pages/associacao']" routerLinkActive="active" class="border-0 bg-transparent d-flex align-items-center list-group-item

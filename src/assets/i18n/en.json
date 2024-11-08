@@ -130,6 +130,8 @@
     "RELEASE_PART2": "pending publication."    
   },
   "SIDEBAR": {
+    "DASHBOARD": "Dashboard",
+    "RANKING": "Ranking",
     "USERS": "Users",
     "ASSOCIATION": "Entity",
     "SUPPLIER": "Supplier",

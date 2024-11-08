@@ -131,6 +131,8 @@
     "RELEASE_PART2": "está pendiente de publicación."
   },
   "SIDEBAR": {
+    "DASHBOARD": "Panel",
+    "RANKING": "Categoría",
     "USERS": "Usuarios",
     "ASSOCIATION": "Entidad",
     "SUPPLIER": "Proveedor",

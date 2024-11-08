@@ -176,32 +176,6 @@
                             </div>
                         </div>
 
-                        <!-- <div class="col-sm-12 col-md-6 mt-3">
-                            <label for="latitude"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.LATITUDE'  | translate}}</b></label>
-                            <input type="text" formControlName="latitude" style="text-indent:20px;" class="form-control"
-                                id="latitude" placeholder="{{'REGISTER_SUPPLIER.LATITUDE'  | translate}}">
-
-                            <div *ngIf="formAddress.controls['latitude'].errors?.['required'] && isSubmit"
-                                class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.LATITUDE_MANDATORY'  | translate}}</p>
-                            </div>
-                        </div> -->
-
-                        <!-- <div class="col-sm-12 col-md-6 mt-3">
-                            <label for="longitude"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.LONGITUDE'  | translate}}</b></label>
-                            <input type="text" formControlName="longitude" style="text-indent:20px;"
-                                class="form-control" id="longitude" placeholder="{{'REGISTER_SUPPLIER.LONGITUDE'  | translate}}">
-
-                            <div *ngIf="formAddress.controls['longitude'].errors?.['required'] && isSubmit"
-                                class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.LONGITUDE_MANDATORY'  | translate}}</p>
-                            </div>
-                        </div> -->
-
                         <div class="col-sm-12 col-md-6 mt-3">
                             <label for="complement"
                                 class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.COMPLEMENT'  | translate}}</b></label>
@@ -299,53 +273,6 @@
                         </div>
                         </div>
 
-<!--                         <div class="col-sm-12 col-md-3 mt-3">
-                            <label for="rg"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.BRAZILIAN_IDENTITY_CARD'  | translate}}</b></label>
-                            <input type="text" formControlName="rg" style="text-indent:20px;" class="form-control"
-                                oninput="this.value= this.value.replace(/[^0-9.xX-]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                               
-                                id="rg" placeholder="000000-0">
-
-                            <div *ngIf="formLegalRepresentative.controls['rg'].errors?.['required'] && isSubmit || regex.test(formLegalRepresentative.controls['rg'].value)"
-                                class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.BRAZILIAN_IDENTITY_CARD_MANDATORY'  | translate}}</p>
-                            </div>
-                        </div> -->
-
- <!--                        <div class="col-sm-12 col-md-3 mt-3">
-                            <label for="document_origin"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>Orgão expedidor</b></label>
-                            <input type="text" formControlName="document_origin" style="text-indent:20px;" class="form-control"
-                                oninput="this.value= this.value.replace(/[^a-z.A-Z/]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                maxlength="6"
-                                id="document_origin" placeholder="ex.:SSP/RN">
-
-                            <div *ngIf="formLegalRepresentative.controls['document_origin'].errors?.['required'] && isSubmit"
-                                class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.BRAZILIAN_IDENTITY_CARD_MANDATORY'  | translate}}</p>
-                            </div>
-                        </div> -->
-<!-- 
-                        <div class="col-sm-12 col-md-3 mt-3">
-                            <label for="validityData"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.DATE_VALIDITY'  | translate}}</b></label>
-                            <input type="date" formControlName="validityData" style="text-indent:20px;"
-                                class="form-control" id="validityData">
-
-                            <div *ngIf="formLegalRepresentative.controls['validityData'].errors?.['required'] && isSubmit"
-                                class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.DATE_VALIDITY_MANDATORY'  | translate}}</p>
-                            </div>
-                            <div *ngIf="formLegalRepresentative.controls['validityData'].hasError('dateError') && isSubmit"
-                            class="div-msg-error mt-2">
-                            <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt>
-                            <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.DATE_VALIDITY_INCORRECT'}}</p>
-                        </div>
-                        </div> -->
 
                     </div>
 
@@ -437,32 +364,6 @@
                                 <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.NEIGHBORHOOD_MANDATORY'  | translate}}</p>
                             </div>
                         </div>
-
-<!--                         <div class="col-sm-12 col-md-6 mt-3">
-                            <label for="latitude"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.LATITUDE'  | translate}}</b></label>
-                            <input type="text" formControlName="latitude" style="text-indent:20px;" class="form-control"
-                                id="latitude" placeholder="{{'REGISTER_SUPPLIER.LATITUDE'  | translate}}">
-
-                            <div *ngIf="formLegalRepresentativeAddress.controls['latitude'].errors?.['required'] && isSubmit"
-                                class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.LATITUDE_MANDATORY'  | translate}}</p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-12 col-md-6 mt-3">
-                            <label for="longitude"
-                                class="font-archivo font-size-16 font-weight-medium text-secondary m-0"><b>{{'REGISTER_SUPPLIER.LONGITUDE'  | translate}}</b></label>
-                            <input type="text" formControlName="longitude" style="text-indent:20px;"
-                                class="form-control" id="longitude" placeholder="{{'REGISTER_SUPPLIER.LONGITUDE'  | translate}}">
-
-                            <div *ngIf="formLegalRepresentativeAddress.controls['longitude'].errors?.['required'] && isSubmit"
-                                class="div-msg-error mt-2">
-                                <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
-                                <p class="font-poppins font-size-14 m-0">{{'REGISTER_SUPPLIER.LONGITUDE_MANDATORY'  | translate}}</p>
-                            </div>
-                        </div> -->
 
                         <div class="col-sm-12 col-md-6 mt-3">
                             <label for="complement"

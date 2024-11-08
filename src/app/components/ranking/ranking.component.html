@@ -1,0 +1,66 @@
+<div class="ranking-container">
+  <div class="title-container">
+    <img src="../../../assets/images/undraw_product_hunt_n-3-f5.svg" alt=""  class="drawers" />
+    <img src="../../../assets/images/trophy.png" alt="Troféu" class="trophy-icon" />
+    <img src="../../../assets/images/undraw_winners_re_wr1l.svg" alt=""  class="drawers" />
+  </div>
+  <h2>Ranking de Pontos</h2>
+
+  <div class="user-ranking" *ngIf="loggedUser">
+    <p>Você está na posição {{ loggedUser.rank }} com {{ loggedUser.points }} pontos.</p>
+  </div>
+
+  <table class="ranking-table">
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Nome</th>
+        <th>Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of rankingList" 
+      >
+      <!-- [class.highlight-row]="user._id === loggedUser._id" -->
+        <td>{{ user.rank }}</td>
+        <td>{{ user.userId }}</td>
+        <td>{{ user.points }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="user-points-detail" *ngIf="loggedUser">
+    <h3>Detalhamento de Pontos</h3>
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <!-- <th>Nome</th> -->
+          <th>Ação</th>
+          <th>Quantitativo</th>
+          <th>Qualitativo</th>
+          <th>Pontos ganhos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let point of loggedUserPoints; let i = index">
+          <!-- <div class="d-flex align-items-center">
+            <img
+                [src]="'https://mdbootstrap.com/img/new/avatars/' + (i + 1) + '.jpg'"
+                alt=""
+                style="width: 45px; height: 45px"
+                class="rounded-circle"
+                />
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{ point.name }}</p>
+              <p class="text-muted mb-0">{{ point.email }}</p>
+            </div>
+          </div> -->
+          <td>{{ point.action }}</td>
+          <td>{{ point.quantitative }}</td>
+          <td>{{ point.qualitative }}</td>
+          <td>{{ point.points }}</td>
+        </tr>        
+      </tbody>
+    </table>
+  </div>
+</div>

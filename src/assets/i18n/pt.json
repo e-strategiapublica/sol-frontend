@@ -130,6 +130,8 @@
     "RELEASE_PART2": "está aguardando liberação."
   },
   "SIDEBAR": {
+    "DASHBOARD": "Painel",
+    "RANKING": "Classificação",
     "USERS": "Usuários",
     "ASSOCIATION": "Entidade",
     "SUPPLIER": "Fornecedor",
