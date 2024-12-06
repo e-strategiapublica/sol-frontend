@@ -100,7 +100,7 @@ export class RegisterSupplierComponent implements OnInit {
       this.categoriesAndSegments = response;
       
     });
-    
+    console.log(this.form.controls)
   }
   validCnpj() {
     this.mainCNPJValid =  UserDataValidator.validarCNPJ(this.form.controls["mainCnpj"].value)

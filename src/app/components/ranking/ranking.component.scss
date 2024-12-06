@@ -1,0 +1,208 @@
+.ranking-container {
+  width: 100%;
+  // max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    h2 {
+      color: #333;
+      font-size: 1.8rem;
+    }
+    .trophy-icon {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .drawers {
+    width: 120px;
+    height: 120px;
+  }
+
+  .user-ranking {
+    font-weight: bold;
+    color: #062235;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 8px;
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f8f8f8;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .highlight-row {
+      background-color: #e9f5ff;
+      color: #062235;
+      font-weight: bold;
+    }
+  }
+    
+    .user-points-detail {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+      h3 {
+        color: #333;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+      }
+  
+      .points-detail-table {
+        width: 100%;
+        border-collapse: collapse;
+  
+        th, td {
+          padding: 10px;
+          border-bottom: 1px solid #ddd;
+          text-align: center;
+        }
+  
+        th {
+          background-color: #f2f2f2;
+          color: #333;
+          font-weight: 600;
+        }
+  
+        tr:nth-child(even) {
+          background-color: #f8f8f8;
+        }
+  
+        td {
+          font-size: 1rem;
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .user-points-detail {
+        padding: 15px;
+  
+        h3 {
+          font-size: 1.4rem;
+        }
+  
+        .points-detail-table th, .points-detail-table td {
+          font-size: 0.9rem;
+          padding: 8px;
+        }
+      }
+    }
+  
+
+  @media (max-width: 768px) {
+    padding: 15px;
+    
+    // .title-container {
+    //   flex-direction: column;
+    //   gap: 12px;
+    //   h2 {
+    //     font-size: 1.5rem;
+    //   }
+    //   .trophy-icon {
+    //     width: 60px;
+    //     height: 60px;
+    //   }
+    // }
+
+    .ranking-table {
+      th, td {
+        padding: 8px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ranking-table {
+      font-size: 0.85rem;
+    }
+  }
+
+  .user-points-detail {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-points-detail h3 {
+    color: #333;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  
+  .user-points-detail .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-points-detail th, .user-points-detail td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .user-points-detail th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 768px) {
+    .user-points-detail {
+      padding: 15px;
+    }
+  
+    .user-points-detail h3 {
+      font-size: 1.4rem;
+    }
+  
+    /* Tornar a tabela rolável horizontalmente */
+    .user-points-detail .table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  
+    .user-points-detail th, .user-points-detail td {
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .user-points-detail th, .user-points-detail td {
+      padding: 6px;
+      font-size: 0.85rem;
+    }
+  }
+  
+}

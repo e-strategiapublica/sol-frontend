@@ -18,11 +18,13 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/services/http-load.service';
 import { registerLocaleData } from '@angular/common';
+import { RankingComponent } from './components/ranking/ranking.component';
 
 registerLocaleData(ptBr);
 @NgModule({
   declarations: [
-    AppComponent,     
+    AppComponent,
+    RankingComponent,     
   ],
   imports: [
     CommonModule,
