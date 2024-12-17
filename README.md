@@ -29,6 +29,70 @@ Run `ng e2e` to Execute os testes end-to-end por meio de uma plataforma de sua e
 
 Para obter mais ajuda sobre o Angular CLI, use ng help ou acesse a página de Visão Geral e Referência de Comandos do Angular CLI.
 
+## Rodando a aplicação com Docker
+
+Para rodar a aplicação usando Docker, siga os passos abaixo:
+
+1. **Crie o arquivo `Dockerfile` e o `docker-compose.yml`** (caso ainda não existam). Aqui está um exemplo de cada:
+
+   **Dockerfile:**
+   ```Dockerfile
+   # Use a imagem oficial do Node.js
+   FROM node:16
+
+   # Crie e defina o diretório de trabalho
+   WORKDIR /app
+
+   # Copie os arquivos do projeto para o container
+   COPY . .
+
+   # Instale as dependências
+   RUN npm install
+
+   # Exponha a porta em que a aplicação irá rodar
+   EXPOSE 4200
+
+   # Comando para iniciar a aplicação
+   CMD ["npm", "start"]
+
+
+docker-compose.yml:
+
+yaml
+Copy code
+version: '3'
+services:
+  frontend:
+    build: .
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/app
+    networks:
+      - sol-network
+networks:
+  sol-network:
+    driver: bridge
+Construa e inicie os containers do Docker:
+
+Execute o seguinte comando na raiz do projeto:
+
+```bash
+$ docker-compose up --build
+Isso construirá a imagem Docker e iniciará a aplicação.
+
+Acesse a aplicação:
+
+Após a execução bem-sucedida, a aplicação estará disponível em http://localhost:4200.
+
+Parar os containers:
+
+Para parar os containers, execute:
+
+```bash
+$ docker-compose down
+Certifique-se de ter o Docker e o Docker Compose instalados na sua máquina antes de executar esses comandos.
+
 # Internationalization
 
 ## Translation files
