@@ -1,65 +1,86 @@
+<p align="center" >
+    <img  src="https://e-strategiapublica.com/wp-content/uploads/2021/02/logo-blanco.png" alt="e-strategiapublica" width="300"/>
+</p>
+
 # Sol App Frontend
 
-Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 15.1.3.
+Projeto desenvolvido com [Angular CLI](https://github.com/angular/angular-cli) na versão **15.1.3**.
 
-## Servidor de Desenvolvimento
+---
 
-Para iniciar o servidor de desenvolvimento, execute o seguinte comando:
+## Gerenciamento de Dependências
+
+Este projeto utiliza **Yarn**. Para instalar as dependências, execute:
 
 ```bash
-Run ` ng serve `.
+yarn
+```
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` para gerar um novo componente. Voce pode usar tabém `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🚀 Iniciando o Servidor de Desenvolvimento
 
-## Build
+Para iniciar o servidor de desenvolvimento, utilize o comando abaixo:
 
-Run `ng build` para buildar o projeto. Os arquivos de build serão geramdos no diretorio `dist/`.
+```bash
+ng serve
+```
 
-## Running unit tests
+O aplicativo estará disponível em [http://localhost:4200](http://localhost:4200).
 
-Run `ng test` para executar testes unitarios via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## 🛠️ Gerando Componentes e Outros Artefatos
 
-Run `ng e2e` to Execute os testes end-to-end por meio de uma plataforma de sua escolha. Para usar este comando, você precisa primeiro adicionar um pacote que implemente as capacidades de testes end-to-end.
+Use o comando abaixo para gerar novos componentes:
 
-## Further help
+```bash
+ng generate component nome-do-componente
+```
 
-Para obter mais ajuda sobre o Angular CLI, use ng help ou acesse a página de Visão Geral e Referência de Comandos do Angular CLI.
+Também é possível gerar diretivas, pipes, services, classes, guards, interfaces, enums e módulos:
 
-## Rodando a aplicação com Docker
+```bash
+ng generate directive|pipe|service|class|guard|interface|enum|module nome
+```
 
-Para rodar a aplicação usando Docker, siga os passos abaixo:
+---
 
-1. **Crie o arquivo `Dockerfile` e o `docker-compose.yml`** (caso ainda não existam). Aqui está um exemplo de cada:
+## 📁 Build do Projeto
 
-   **Dockerfile:**
-   ```Dockerfile
-   # Use a imagem oficial do Node.js
-   FROM node:16
+Para realizar o build do projeto, execute:
 
-   # Crie e defina o diretório de trabalho
-   WORKDIR /app
+```bash
+ng build
+```
 
-   # Copie os arquivos do projeto para o container
-   COPY . .
+Os arquivos serão gerados no diretório `dist/`.
 
-   # Instale as dependências
-   RUN npm install
+---
 
-   # Exponha a porta em que a aplicação irá rodar
-   EXPOSE 4200
+## 🌐 Rodando a Aplicação com Docker
 
-   # Comando para iniciar a aplicação
-   CMD ["npm", "start"]
+### Passo 1: Criar os Arquivos Necessários
 
+**Dockerfile:**
 
-docker-compose.yml:
+```Dockerfile
+FROM node:16
 
-yaml
-Copy code
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+EXPOSE 4200
+
+CMD ["npm", "start"]
+```
+
+**docker-compose.yml:**
+
+```yaml
 version: '3'
 services:
   frontend:
@@ -70,48 +91,91 @@ services:
       - .:/app
     networks:
       - sol-network
+
 networks:
   sol-network:
     driver: bridge
-Construa e inicie os containers do Docker:
+```
 
-Execute o seguinte comando na raiz do projeto:
+### Passo 2: Construir e Iniciar os Containers
 
-```bash
-$ docker-compose up --build
-Isso construirá a imagem Docker e iniciará a aplicação.
-
-Acesse a aplicação:
-
-Após a execução bem-sucedida, a aplicação estará disponível em http://localhost:4200.
-
-Parar os containers:
-
-Para parar os containers, execute:
+Na raiz do projeto, execute:
 
 ```bash
-$ docker-compose down
-Certifique-se de ter o Docker e o Docker Compose instalados na sua máquina antes de executar esses comandos.
+docker-compose up --build
+```
 
-# Internationalization
+A aplicação estará disponível em [http://localhost:4200](http://localhost:4200).
 
-## Translation files
+### Passo 3: Parar os Containers
 
-Os arquivos estão localizados na branch feature/add-change-language, no diretório src/assets/i118n.
+Para parar a aplicação, execute:
 
-Haverá 4 arquivos com idiomas diferentes:
+```bash
+docker-compose down
+```
 
-- `en.json` (English)
-- `es.json` (Spanish)
-- `fr.json` (French)
-- `pt.json` (Portuguese)
+> ⚠️ Certifique-se de ter o **Docker** e o **Docker Compose** instalados na sua máquina.
 
-Como adicionar um novo idioma
-Crie um novo arquivo JSON no formato correspondente no diretório src/assets/i118n.
-Copie um dos arquivos existentes (por exemplo, en.json).
-Traduza as chaves para o idioma desejado.
+---
 
+## 📊 Testes
 
-Os arquivos JSON são usados para traduzir os arquivos do diretório src/app para seus respectivos idiomas.
+### Testes Unitários
 
-Para adicionar um novo idioma, crie um arquivo no mesmo formato e no mesmo diretório dos outros, copie um dos arquivos existentes e traduza para o idioma desejado.
+Para executar testes unitários com o [Karma](https://karma-runner.github.io), utilize:
+
+```bash
+ng test
+```
+
+### Testes End-to-End
+
+Para executar testes end-to-end:
+
+```bash
+ng e2e
+```
+
+É necessário adicionar um pacote que implemente as funcionalidades de testes end-to-end antes de usar este comando.
+
+---
+
+## 🌐 Internacionalização (i18n)
+
+### Arquivos de Tradução
+
+Os arquivos de tradução estão localizados no diretório `src/assets/i18n` na branch `feature/add-change-language`. Os idiomas disponíveis são:
+
+- `en.json` (Inglês)
+- `es.json` (Espanhol)
+- `fr.json` (Francês)
+- `pt.json` (Português)
+
+### Como Adicionar um Novo Idioma
+
+1. Crie um novo arquivo JSON no diretório `src/assets/i18n`.
+2. Copie o conteúdo de um arquivo existente (ex: `en.json`).
+3. Traduza as chaves para o idioma desejado.
+
+Os arquivos JSON são usados para traduzir o conteúdo do diretório `src/app` para os respectivos idiomas.
+
+---
+
+## 🔧 Ajuda Adicional
+
+Para mais informações sobre o Angular CLI:
+
+```bash
+ng help
+```
+
+Ou acesse a [documentação oficial do Angular CLI](https://angular.io/cli).
+
+---
+
+**Desenvolvido por e-strategiapublica** 🚀
+
+---
+
+**Licença:** Este projeto está licenciado sob os termos da licença AGPL-3.0.
