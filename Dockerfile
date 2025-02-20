@@ -8,19 +8,19 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instalar dependências
-RUN npm install
+RUN yarn
 
 # Copiar o restante do projeto
 COPY . .
 
 # Construir o projeto Angular para produção
-RUN npm run build
+RUN yarn build
 
 # Etapa 2: Servir a aplicação
 FROM nginx:alpine
 
 # Copiar os arquivos da build para o diretório padrão do Nginx
-COPY --from=builder /app/dist/sol-app-frontend /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copiar configuração personalizada do Nginx (opcional)
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
