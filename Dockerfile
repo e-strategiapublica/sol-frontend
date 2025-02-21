@@ -4,11 +4,11 @@ FROM node:18 AS builder
 # Diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copiar arquivos do projeto para o container
-COPY package*.json ./
+# Copiar arquivos essenciais para instalação das dependências
+COPY package.json yarn.lock ./
 
-# Instalar dependências
-RUN yarn
+# Instalar dependências sem modificar o yarn.lock
+RUN yarn install
 
 # Copiar o restante do projeto
 COPY . .
@@ -16,17 +16,8 @@ COPY . .
 # Construir o projeto Angular para produção
 RUN yarn build
 
-# Etapa 2: Servir a aplicação
-FROM nginx:alpine
-
-# Copiar os arquivos da build para o diretório padrão do Nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copiar configuração personalizada do Nginx (opcional)
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
-
 # Expor a porta 80
 EXPOSE 80
 
-# Comando para iniciar o Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Iniciar a aplicação
+CMD ["yarn", "run", "start"]
