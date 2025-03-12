@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, map } from 'rxjs';
 import { ConvenioResponseDto } from 'src/dtos/convenio/convenio-response.dto';
 import { ConvenioRequestDto } from 'src/dtos/convenio/convenio-request.dto';
@@ -49,9 +49,13 @@ export class ConvenioService extends BaseService {
   }
 
   getConvenioWithoutProject(): Observable<any> {
-    return this.httpClient.get(`${this.url}/without-project`, this.authorizedHeader)
-      .pipe(catchError(this.serviceError));
+    const params = new HttpParams().set('withoutProject', 'true');
+
+    return this.httpClient
+      .get(`${this.url}`, { params, ...this.authorizedHeader })
+      .pipe(map(response => response), catchError(this.serviceError));
   }
+  
 
   register(dto: ConvenioRequestDto): Observable<ConvenioResponseDto> {
     return this.httpClient

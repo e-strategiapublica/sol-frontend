@@ -102,6 +102,7 @@ export class LoginComponent implements OnInit {
         this.ngxSpinnerService.hide();
       },
       error: (error) => {
+        console.log(error);
         let msg;
         switch(error.error.errors[0]){
           case "Email ou senha inválido(s)!": {
