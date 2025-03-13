@@ -156,6 +156,28 @@ export class NewGroupComponent implements OnInit, OnDestroy {
         this.toastrService.error(error.error.errors[0], this.translate.instant('TOASTRS.ERROR_CREATE_GROUP'), { progressBar: true });
       },
     });
+
+    // this.workPlanService.create(this.request).subscribe({
+    //   next: success => {
+    //     this.convenioService.handleWorkPlan("add", this.convenioId, { workPlanId: success._id }).subscribe({
+    //       next: () => {
+    //         this.toastrService.success(this.translate.instant('TOASTRS.SUCCESS_CREATE_GROUP'), '', { progressBar: true });
+    //         this.location.back();
+    //       },
+    //       error: error => {            
+    //         this.toastrService.error(error.error?.errors?.[0] || this.translate.instant('TOASTRS.ERROR_CREATE_GROUP'), 
+    //           this.translate.instant('TOASTRS.ERROR_CREATE_GROUP'), { progressBar: true });
+    //       },
+    //     });
+    //   },
+    //   error: error => {
+    //     console.error(error);
+    //     this.toastrService.error(error.error?.errors?.[0] || this.translate.instant('TOASTRS.ERROR_CREATE_GROUP'), 
+    //       this.translate.instant('TOASTRS.ERROR_CREATE_GROUP'), { progressBar: true });
+    //   },
+    // });
+
+    
   }
   goBack() {
     this.location.back();

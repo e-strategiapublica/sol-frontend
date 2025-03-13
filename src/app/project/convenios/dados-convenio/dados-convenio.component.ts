@@ -51,6 +51,20 @@ export class DadosConvenioComponent {
     });
   }
 
+  // deleteGroup(item: WorkPlanInterface) {
+  //   this.convenioService.handleWorkPlan("remove", this.convenio._id, { workPlanId: item._id }).subscribe({
+  //     next: () => {
+  //       this.convenio.workPlan = this.convenio.workPlan.filter(x => x._id !== item._id);
+  //       this.toastrService.success("Excluído com sucesso!", "", { progressBar: true });
+  //     },
+  //     error: error => {
+  //       console.error(error);
+  //       this.toastrService.error(error.error?.errors?.[0] || "Erro ao excluir", "", { progressBar: true });
+  //     },
+  //   });
+  // }
+  
+
   addGroup() {
     this.router.navigate(["/pages/item-group/new-group"]);
     localStorage.setItem("convenioId", this.convenio._id);

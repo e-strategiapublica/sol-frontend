@@ -75,6 +75,12 @@ export class ConvenioService extends BaseService {
       .pipe(map(this.extractData), catchError(this.serviceError));
   }
 
+  // handleWorkPlan(action: "add" | "remove", Id: string, dto: { workPlanId: string }): Observable<ConvenioResponseDto> {
+  //   return this.httpClient
+  //     .put(`${this.url}/work-plan/${Id}/${action}`, dto, this.authorizedHeader)
+  //     .pipe(map(this.extractData), catchError(this.serviceError));
+  // }
+
   addWorkPlan(Id: string, dto: { workPlanId: string }): Observable<ConvenioResponseDto> {
     return this.httpClient
       .put(`${this.url}/add-work-plan/${Id}`, dto, this.authorizedHeader)
