@@ -22,34 +22,38 @@ export class ClassesService extends BaseService {
     super();
   }
   
+  // Para pegar a lista de classes
   getClasses(): Observable<any> {
     return this.httpClient
-      .get(`${this.url}/list`, this.authorizedHeader)
-      .pipe(map(response => response), catchError(this.serviceError)
-    );
+      .get(`${this.url}`, this.authorizedHeader)  // Alterado para /classes (sem o "list")
+      .pipe(map(response => response), catchError(this.serviceError));
   }
 
+  // Para registrar uma nova classe
   register(dto: ClassesRequestDto): Observable<ClassesResponseDto> {    
     return this.httpClient
-      .post(`${this.url}/register`, dto, this.authorizedHeader)
+      .post(`${this.url}`, dto, this.authorizedHeader)  // Alterado para /classes (sem o "register")
       .pipe(map(this.extractData), catchError(this.serviceError));
   }
 
+  // Para atualizar uma classe
   update(id: string, dto: any): Observable<ClassesResponseDto> {   
     return this.httpClient
-      .put(`${this.url}/update/${id}`, dto, this.authorizedHeader)
+      .put(`${this.url}/${id}`, dto, this.authorizedHeader)  // Alterado para /classes/:id
       .pipe(map(this.extractData), catchError(this.serviceError));
   }
 
-  delete(Id: string): Observable<ClassesResponseDto> {
+  // Para excluir uma classe
+  delete(id: string): Observable<ClassesResponseDto> {
     return this.httpClient
-      .delete(`${this.url}/delete-by-id/${Id}`, this.authorizedHeader)
+      .delete(`${this.url}/${id}`, this.authorizedHeader)  // Alterado para /classes/:id
       .pipe(map(this.extractData), catchError(this.serviceError));
   }
 
   getClassesList(): any[] {
     return this.classes;
   }
+
   getClassesFilterList(): any[] {
     return this.classesFilter;
   }
