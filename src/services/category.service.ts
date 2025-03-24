@@ -1,71 +1,86 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { BaseService } from './base.service';
 import { CategoryRequestDto } from 'src/dtos/category/category-request.dto';
 import { CategoryResponseDto } from 'src/dtos/category/category-response.dto';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class CategoryService  extends BaseService {
- 
-  private url = `${environment.api.path}/category`;
-  category: any[]
-  categoryFilter: any[]
+export class CategoryService extends BaseService {
+  private readonly url = `${environment.api.path}/categories`;
+  private categoryList: CategoryResponseDto[] = [];
+  private categoryFilterList: CategoryResponseDto[] = [];
 
-  constructor(
-    private httpClient: HttpClient
-  ) {
+  constructor(private httpClient: HttpClient) {
     super();
   }
 
-  getCategory(): Observable<any> {
+  // Método para pegar todas as categorias sem autenticação (como sugerido)
+  getCategoryWithoutAuth(): Observable<CategoryResponseDto[]> {
     return this.httpClient
-      .get(`${this.url}/list`, this.authorizedHeader)
-      .pipe(map(response => response), catchError(this.serviceError)
-      );
-  }
-
-  getCategoryWithoutAuth(): Observable<any> {
-    return this.httpClient
-      .get(`${this.url}/listWithAuth`)
-      .pipe(map(response => response), catchError(this.serviceError)
-      );
-  }
-
-  register(dto: CategoryRequestDto): Observable<CategoryResponseDto> {    
-    return this.httpClient
-      .post(`${this.url}/register`, dto, this.authorizedHeader)
-      .pipe(map(this.extractData), catchError(this.serviceError));
-  }
- 
-  update(Id: string, dto: CategoryRequestDto): Observable<CategoryResponseDto> {
-    return this.httpClient
-      .put(`${this.url}/update/${Id}`, dto, this.authorizedHeader)
+      .get<CategoryResponseDto[]>(this.url)
       .pipe(map(this.extractData), catchError(this.serviceError));
   }
 
-  delete(Id: string): Observable<CategoryResponseDto> {
+  // Método para pegar categorias com autenticação
+  getCategory(): Observable<CategoryResponseDto[]> {
     return this.httpClient
-      .delete(`${this.url}/delete-by-id/${Id}`, this.authorizedHeader)
+      .get<CategoryResponseDto[]>(this.url, this.authorizedHeader)
       .pipe(map(this.extractData), catchError(this.serviceError));
   }
 
-  getCategoryList(): any[] {
-    return this.category;
-  }
-  getCategoryFilterList(): any[] {
-    return this.categoryFilter;
-  }
-
-  setCategoryList(nuevoValor: any[]) {    
-    this.category = nuevoValor;
+  // Método para criar uma nova categoria
+  register(dto: CategoryRequestDto): Observable<CategoryResponseDto> {
+    return this.httpClient
+      .post<CategoryResponseDto>(this.url, dto, this.authorizedHeader)
+      .pipe(map(this.extractData), catchError(this.serviceError));
   }
 
-  setCategoryFilterList(nuevoValor: any[]) {    
-    this.categoryFilter = nuevoValor;
+  // Método para pegar uma categoria por ID
+  getById(id: string): Observable<CategoryResponseDto> {
+    return this.httpClient
+      .get<CategoryResponseDto>(`${this.url}/${id}`, this.authorizedHeader)
+      .pipe(map(this.extractData), catchError(this.serviceError));
   }
 
+  // Método para criar
+  create(dto: CategoryRequestDto): Observable<CategoryResponseDto> {
+    return this.httpClient
+      .post<CategoryResponseDto>(this.url, dto, this.authorizedHeader)
+      .pipe(map(this.extractData), catchError(this.serviceError));
+  }
+
+  // Método para atualizar
+  update(id: string, dto: CategoryRequestDto): Observable<CategoryResponseDto> {
+    return this.httpClient
+      .put<CategoryResponseDto>(`${this.url}/${id}`, dto, this.authorizedHeader)
+      .pipe(map(this.extractData), catchError(this.serviceError));
+  }
+
+  // Método para deletar
+  delete(id: string): Observable<void> {
+    return this.httpClient
+      .delete<void>(`${this.url}/${id}`, this.authorizedHeader)
+      .pipe(catchError(this.serviceError));
+  }
+
+  getCategoryList(): CategoryResponseDto[] {
+    return this.categoryList;
+  }
+
+  getCategoryFilterList(): CategoryResponseDto[] {
+    return this.categoryFilterList;
+  }
+
+  setCategoryList(newList: CategoryResponseDto[]): void {
+    this.categoryList = newList;
+  }
+
+  setCategoryFilterList(newList: CategoryResponseDto[]): void {
+    this.categoryFilterList = newList;
+  }
 }
