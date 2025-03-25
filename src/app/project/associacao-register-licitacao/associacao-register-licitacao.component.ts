@@ -388,7 +388,6 @@ export class AssociacaoRegisterLicitacaoComponent {
       this.stepper.next();
     }
     if (value === 'step3' && this.formModel.controls['modality'].value !== 'openClosed') {
-      alert("1")
       if (this.formModel.controls['modality'].value === '') {
         this.toastrService.error('Selecione uma modalidade', '', { progressBar: true })
         return
