@@ -12,8 +12,8 @@ export const environment = {
   //   path: 'https://api.sol2.cooperar.pb.gov.br',
   // }
   api: {
-    server: "207.246.127.17/api",
+    server: "http://207.246.127.17",
     port: "",
-    path: "207.246.127.17/api",
+    path: "api",
   },
 };
