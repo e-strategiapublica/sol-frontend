@@ -39,15 +39,17 @@ jobs:
         run: |
           ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
 
-          # Remove arquivos antigos no servidor
+          # Remove arquivos antigos
           ssh $SSH_USER@$SSH_HOST "rm -rf $DEPLOY_PATH/*"
 
-          # Envia os arquivos novos
+          # Envia arquivos novos
           rsync -avz ./dist/ $SSH_USER@$SSH_HOST:$DEPLOY_PATH/
 
-          # Reinicia o Nginx
-          ssh $SSH_USER@$SSH_HOST "
-          service nginx restart && \
+          # Reinicia nginx
+          ssh $SSH_USER@$SSH_HOST << 'EOF'
+          service nginx restart
+          echo "✅ Frontend deployado com limpeza e Nginx reiniciado!"
+          EOF
 
       - name: Notificar deploy
         if: always()
