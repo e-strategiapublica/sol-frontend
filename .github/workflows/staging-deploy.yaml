@@ -1,0 +1,60 @@
+name: Staging CI/CD
+
+on:
+  push:
+    branches: [staging]
+  pull_request:
+    branches: [staging]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: "yarn"
+
+      - name: Instalar dependências
+        run: yarn install --frozen-lockfile
+
+      - name: Build Angular app
+        run: yarn run build -- --configuration production
+
+      - name: Setup SSH key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy para Staging (Frontend)
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DEPLOY_PATH: "/var/www/sol-frontend"
+        run: |
+          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+
+          # Remove arquivos antigos no servidor
+          ssh $SSH_USER@$SSH_HOST "rm -rf $DEPLOY_PATH/*"
+
+          # Envia os arquivos novos
+          rsync -avz ./dist/ $SSH_USER@$SSH_HOST:$DEPLOY_PATH/
+
+          # Reinicia o Nginx
+          ssh $SSH_USER@$SSH_HOST "
+          service nginx restart && \
+
+      - name: Notificar deploy
+        if: always()
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "🚀 Deploy para staging concluído com sucesso!"
+          else
+            echo "❌ Deploy para staging falhou"
+            exit 1
+          fi
