@@ -11,9 +11,9 @@ export const environment = {
   //   port: '',
   //   path: 'https://api.sol2.cooperar.pb.gov.br',
   // }
-  api: {
-    server: 'https://api.homologacao.solpublico.org',
-    port: '',
-    path: 'https://api.homologacao.solpublico.org',
-  }
+  // api: {
+  //   server: 'https://api.homologacao.solpublico.org',
+  //   port: '',
+  //   path: 'https://api.homologacao.solpublico.org',
+  // }
 };
