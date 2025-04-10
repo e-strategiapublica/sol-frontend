@@ -18,6 +18,7 @@ export class DetailsContractComponent {
   loteList: any = {};
 
   contractId: string;
+  
 
   constructor(
     private toastrService: ToastrService,
@@ -116,5 +117,32 @@ export class DetailsContractComponent {
   back(){          
     this.router.navigate(["/pages/licitacoes/contratos-licitacoes"]);
   }
+
+
+  getSupplierName(): string {
+    const lote = this.loteList;
+  
+    // 1. Se vier pelo proposal diretamente
+    if (lote?.proposal?.supplier?.name) {
+      return lote.proposal.supplier.name;
+    }
+  
+    // 2. Se estiver dentro de proposals do allotment com proposalWin
+    const winnerProposal = lote?.allotment?.proposals?.find((p: any) => p.proposalWin);
+    if (winnerProposal?.supplier?.name) {
+      return winnerProposal.supplier.name;
+    }
+  
+    // 3. Pega o nome do primeiro supplier se existir
+    if (lote?.allotment?.proposals?.length > 0) {
+      const firstSupplier = lote.allotment.proposals[0]?.supplier?.name;
+      if (firstSupplier) {
+        return firstSupplier;
+      }
+    }
+  
+    return 'Fornecedor não informado';
+  }
+  
 
 }
