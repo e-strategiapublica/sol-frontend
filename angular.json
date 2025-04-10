@@ -185,6 +185,5 @@
   },
   "cli": {
     "analytics": false
-  },
-  "defaultProject": "ngv15"
+  }
 }
