@@ -204,10 +204,14 @@ export class AssociacaoRegisterLicitacaoComponent {
 
     fork.subscribe({ 
       next: data => {
-
         this.costItemsList = data.costItens;        
         this.userList = data.suppliers;
         // this.convenioList = data.convenios
+      
+
+        this.supplierList = data.suppliers; //Linha Adicionada
+  
+
         this.convenioList = data.convenios.filter((item: any) => item.activeStatus === AgreementActiveStatusEnum.active && !!item.association);
         let maxQuantity: number = 0;
 
@@ -388,7 +392,7 @@ export class AssociacaoRegisterLicitacaoComponent {
       this.stepper.next();
     }
     if (value === 'step3' && this.formModel.controls['modality'].value !== 'openClosed') {
-      alert("1")
+     
       if (this.formModel.controls['modality'].value === '') {
         this.toastrService.error('Selecione uma modalidade', '', { progressBar: true })
         return
@@ -887,6 +891,7 @@ export class AssociacaoRegisterLicitacaoComponent {
 
   addSupplier() {
     const supplierId = this.formAddLots.controls["inviteSuppliers"].value;
+    
     const supplier = this.selectSupplier(supplierId);
     if (supplier && !this.invitedSupplierId.includes(supplierId)) {
       this.invitedSupplierId.push(supplierId);
