@@ -86,7 +86,7 @@ export class ContractsService extends BaseService {
       this.httpClient
         .get(`${this.url}/create-document/${_id}/${lang}/${type}`, {
           headers: this.authorizedHeaderFile.headers,
-          responseType: "blob",
+          // responseType: "blob",
         })
         .pipe(map((response: any) => response))
     );

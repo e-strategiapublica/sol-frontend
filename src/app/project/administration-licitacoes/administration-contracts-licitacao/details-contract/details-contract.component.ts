@@ -109,9 +109,17 @@ export class DetailsContractComponent {
       })
       .catch(error => {
         console.error(error);
-        this.toastrService.error("ERROR DOWNLOAD", "", { progressBar: true });
+        
+        // Verifique se o erro contém a estrutura esperada e exibe a mensagem de erro
+        const errorMessage = error?.error?.errors?.join(', ') || 'Erro desconhecido';
+      
+        // Exibe a mensagem de erro usando o Toastr
+        this.toastrService.error(errorMessage, "", { progressBar: true });
+        
+        // Oculta o spinner
         this.ngxSpinnerService.hide();
       });
+      
   }
 
   back(){          
