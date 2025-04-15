@@ -21,30 +21,36 @@ export class ContractsService extends BaseService {
 
   getContract(): Observable<any> {
     return this.httpClient.get(`${this.url}/list`, this.authorizedHeader).pipe(
-      map(response => response),
+      map((response) => response),
       catchError(this.serviceError)
     );
   }
 
   getContractById(_id: string): Observable<any> {
-    return this.httpClient.get(`${this.url}/get-by-id/` + _id, this.authorizedHeader).pipe(
-      map(response => response),
-      catchError(this.serviceError)
-    );
+    return this.httpClient
+      .get(`${this.url}/get-by-id/` + _id, this.authorizedHeader)
+      .pipe(
+        map((response) => response),
+        catchError(this.serviceError)
+      );
   }
 
   getContractByUserId(_id: string): Observable<any> {
-    return this.httpClient.get(`${this.url}/get-by-user-id/` + _id, this.authorizedHeader).pipe(
-      map(response => response),
-      catchError(this.serviceError)
-    );
+    return this.httpClient
+      .get(`${this.url}/get-by-user-id/` + _id, this.authorizedHeader)
+      .pipe(
+        map((response) => response),
+        catchError(this.serviceError)
+      );
   }
 
   getContractByBidId(_id: string): Observable<any> {
-    return this.httpClient.get(`${this.url}/get-by-bid/` + _id, this.authorizedHeader).pipe(
-      map(response => response),
-      catchError(this.serviceError)
-    );
+    return this.httpClient
+      .get(`${this.url}/get-by-bid/` + _id, this.authorizedHeader)
+      .pipe(
+        map((response) => response),
+        catchError(this.serviceError)
+      );
   }
 
   updateStatuss(_id: string, dto: acceptSupplierDto): Observable<any> {
@@ -53,7 +59,10 @@ export class ContractsService extends BaseService {
       .pipe(map(this.extractData), catchError(this.serviceError));
   }
 
-  updateContract(_id: string, dto: ContractUpdateStatusItemDto): Observable<any> {
+  updateContract(
+    _id: string,
+    dto: ContractUpdateStatusItemDto
+  ): Observable<any> {
     return this.httpClient
       .put(`${this.url}/update-itens/${_id}`, dto, this.authorizedHeader)
       .pipe(map(this.extractData), catchError(this.serviceError));
