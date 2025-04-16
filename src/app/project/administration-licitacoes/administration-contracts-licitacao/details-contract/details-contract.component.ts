@@ -18,7 +18,6 @@ export class DetailsContractComponent {
   loteList: any = {};
 
   contractId: string;
-  
 
   constructor(
     private toastrService: ToastrService,
@@ -31,16 +30,16 @@ export class DetailsContractComponent {
 
   ngOnInit(): void {
     this.ngxSpinnerService.show();
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       const id = params["_id"];
       this.contractId = id;
       this.contractsService.getContractById(id).subscribe({
-        next: data => {
+        next: (data) => {
           this.loteList = data;
-          console.log(this.loteList)
+          console.log(this.loteList);
           this.ngxSpinnerService.hide();
         },
-        error: error => {
+        error: (error) => {
           console.error(error);
         },
       });
@@ -89,8 +88,12 @@ export class DetailsContractComponent {
     }
 
     this.contractsService
-      .getPdf(this.contractId, language, this.loteList.bid_number.classification)
-      .then(data => {
+      .getPdf(
+        this.contractId,
+        language,
+        this.loteList.bid_number.classification
+      )
+      .then((data) => {
         const buffer = data;
         const file = new Blob([buffer], {
           type: "application/pdf",
@@ -99,7 +102,9 @@ export class DetailsContractComponent {
         const link = document.createElement("a");
         link.href = fileURL;
         const name =
-          this.loteList.bid_number.bid_count + "/" + new Date(this.loteList.bid_number.createdAt).getFullYear();
+          this.loteList.bid_number.bid_count +
+          "/" +
+          new Date(this.loteList.bid_number.createdAt).getFullYear();
         link.setAttribute("download", `Contract-${name}.pdf`);
         link.style.display = "none"; // Oculta o link no DOM
         document.body.appendChild(link);
@@ -107,32 +112,41 @@ export class DetailsContractComponent {
         document.body.removeChild(link);
         this.ngxSpinnerService.hide();
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
-        this.toastrService.error("ERROR DOWNLOAD", "", { progressBar: true });
+
+        // Verifique se o erro contém a estrutura esperada e exibe a mensagem de erro
+        const errorMessage =
+          error?.error?.errors?.join(", ") || "Erro desconhecido";
+
+        // Exibe a mensagem de erro usando o Toastr
+        this.toastrService.error(errorMessage, "", { progressBar: true });
+
+        // Oculta o spinner
         this.ngxSpinnerService.hide();
       });
   }
 
-  back(){          
+  back() {
     this.router.navigate(["/pages/licitacoes/contratos-licitacoes"]);
   }
 
-
   getSupplierName(): string {
     const lote = this.loteList;
-  
+
     // 1. Se vier pelo proposal diretamente
     if (lote?.proposal?.supplier?.name) {
       return lote.proposal.supplier.name;
     }
-  
+
     // 2. Se estiver dentro de proposals do allotment com proposalWin
-    const winnerProposal = lote?.allotment?.proposals?.find((p: any) => p.proposalWin);
+    const winnerProposal = lote?.allotment?.proposals?.find(
+      (p: any) => p.proposalWin
+    );
     if (winnerProposal?.supplier?.name) {
       return winnerProposal.supplier.name;
     }
-  
+
     // 3. Pega o nome do primeiro supplier se existir
     if (lote?.allotment?.proposals?.length > 0) {
       const firstSupplier = lote.allotment.proposals[0]?.supplier?.name;
@@ -140,9 +154,7 @@ export class DetailsContractComponent {
         return firstSupplier;
       }
     }
-  
-    return 'Fornecedor não informado';
-  }
-  
 
+    return "Fornecedor não informado";
+  }
 }

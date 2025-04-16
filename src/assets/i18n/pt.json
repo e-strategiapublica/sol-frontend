@@ -1159,17 +1159,17 @@
   "CLASSES":{
     "SECTION_TITLE": "Classes",
     "SEARCH": "Pesquise por código, descrição do grupo ou descrição da classe",
-    "NEW_CLASS": "Nova Class",
+    "NEW_CLASS": "Nova Classe",
     "CODE_TITLE": "Código",
     "GROUP_DESCRIPTION_TITLE": "Descrição do grupo",
-    "CLASS_DESCRIPTION_TITLE": "Descrição do clase",
+    "CLASS_DESCRIPTION_TITLE": "Descrição do classe",
     "ACTIONS": "Ações",
-    "REGISTER_CLASS_TITLE": "Registrar clase",
+    "REGISTER_CLASS_TITLE": "Registrar classe",
     "GROUP_TITLE": "Grupo",    
     "DESCRIPTION": "Descrição",
-    "EDIT_CLASS_TITLE": "Editar Clase",
+    "EDIT_CLASS_TITLE": "Editar Classe",
     "ENTER_CLASS_DESCRIPTION": "Insira uma descrição da classe",
-    "DELETE_TITLE": "Excluir clase",
+    "DELETE_TITLE": "Excluir classe",
     "ARE_YOU_SURE": "Tem certeza de que deseja excluir a turma "
   },
   "PDM":{
