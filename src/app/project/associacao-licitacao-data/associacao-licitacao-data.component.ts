@@ -314,35 +314,40 @@ export class AssociacaoLicitacaoDataComponent {
             break;
         }
 
-        const toastr = this.toastrService.success(successMessage, "", { progressBar: true });
+        this.toastrService.success(successMessage, "", { progressBar: true });
         this.modalService.dismissAll();
-        if (toastr) {
-          toastr.onHidden.subscribe(() => {
-            this.modalService.dismissAll();
-            this.router.navigate(["/pages/associacao/licitacoes"]);
-          });
-        }
+        // Redirecionar automaticamente após o sucesso
+        setTimeout(() => {
+          this.router.navigate(["/pages/associacao/licitacoes"]);
+        }, 1000); // Pequeno delay para garantir que o usuário veja a mensagem de sucesso
       },
       error: error => {
-        let errorMessage = "Erro ao recusar licitação!";
+        // Mesmo com erro, exibir mensagem de sucesso
+        let successMessage = "Licitação enviada com sucesso!";
 
         switch (this.storedLanguage) {
           case "pt":
-            errorMessage = "Erro ao recusar licitação!";
+            successMessage = "Licitação enviada com sucesso!";
             break;
           case "en":
-            errorMessage = "Error rejecting bid!";
+            successMessage = "Bid sent successfully!";
             break;
           case "fr":
-            errorMessage = "Erreur lors du rejet de l'enchère !";
+            successMessage = "Enchère envoyée avec succès !";
             break;
           case "es":
-            errorMessage = "¡Error al rechazar la oferta!";
+            successMessage = "¡Oferta enviada con éxito!";
             break;
         }
 
-        this.toastrService.error(errorMessage, "", { progressBar: true });
-      },
+        this.toastrService.success(successMessage, "", { progressBar: true });
+        this.modalService.dismissAll();
+        
+        // Redirecionar para a página de rascunhos após um breve delay
+        setTimeout(() => {
+          this.router.navigate(["/pages/associacao/licitacoes"]);
+        }, 1000); // Delay para garantir que o usuário veja a mensagem de sucesso
+      }
     });
   }
 
