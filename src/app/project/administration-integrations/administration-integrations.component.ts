@@ -89,6 +89,9 @@ export class AdministrationIntegrationsComponent {
   }
 
   handlerSave(i: number, items: EndPointsInterface) {
+    // FUNCIONALIDADE DESATIVADA: A funcionalidade de Integração foi temporariamente desativada por decisão da equipe.
+    // Pode ser reativada no futuro removendo os comentários abaixo.
+    /*
     if (this.isCronValid(this.form.value.frequency)) {
       this.toastrService.error("Cron inválido!");
       return;
@@ -114,6 +117,8 @@ export class AdministrationIntegrationsComponent {
         console.error(error);
       },
     });
+    */
+    this.toastrService.info("Funcionalidade de Integração está temporariamente desativada.");
   }
 
   handlerCancel(){
@@ -152,6 +157,9 @@ export class AdministrationIntegrationsComponent {
   }
 
   forceJob(item: EndPointsInterface) {
+    // FUNCIONALIDADE DESATIVADA: A funcionalidade de Integração foi temporariamente desativada por decisão da equipe.
+    // Pode ser reativada no futuro removendo os comentários abaixo.
+    /*
     this.spinnerService.show();
     this.endPointsService.forceJob(item.endpointType).subscribe({
       next: response => {
@@ -165,6 +173,8 @@ export class AdministrationIntegrationsComponent {
         console.error(error);
       },
     });
+    */
+    this.toastrService.info("Funcionalidade de Integração está temporariamente desativada.");
   }
 
   isCronValid(freq: string) {
