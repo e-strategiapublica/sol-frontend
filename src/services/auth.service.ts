@@ -24,7 +24,7 @@ export class AuthService extends BaseService {
   authenticate(dto: AuthenticateRequestDto) {
     return this.httpClient.post<UserAuthenticatedDto>(
       `${this.url}/authenticate`,
-      this.encrypt(JSON.stringify(dto)),
+      dto,
       this.anonymousHeader
     );
   }

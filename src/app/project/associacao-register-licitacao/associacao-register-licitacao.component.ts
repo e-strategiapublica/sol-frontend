@@ -17,7 +17,7 @@ import { CostItemsService } from "src/services/cost-items.service";
 import { ItemsService } from "src/services/items.service";
 import { SupplierService } from "src/services/supplier.service";
 import { WorkPlanService } from "src/services/work-plan.service";
-import { SHA256, enc } from "crypto-js";
+import { sha256 } from '../sha256.util';
 
 @Component({
   selector: "app-associacao-register-licitacao",
@@ -1155,7 +1155,7 @@ export class AssociacaoRegisterLicitacaoComponent {
     
   }
 
-  changeClassification() {
+  async changeClassification() {
     
     this.costItemsListFilter = [];
     this.costItemsListFilter = this.costItemsList.filter((a: any) => a.group?.category_name == this.formModel.controls['classification'].value);
@@ -1190,7 +1190,7 @@ export class AssociacaoRegisterLicitacaoComponent {
     this.lotItemsList = [...dataArrLotList];            
 
     for(let i=0;i<this.lotItemsList.length;i++){
-      this.lotItemsList[i].id = SHA256(this.lotItemsList[i].name+this.lotItemsList[i].quantity+this.lotItemsList[i].unit+new Date()).toString(enc.Hex);      
+      this.lotItemsList[i].id = await sha256(this.lotItemsList[i].name+this.lotItemsList[i].quantity+this.lotItemsList[i].unit+new Date());      
     }
 
 
