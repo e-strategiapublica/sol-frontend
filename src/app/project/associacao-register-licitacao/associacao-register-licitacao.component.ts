@@ -839,7 +839,7 @@ export class AssociacaoRegisterLicitacaoComponent {
         formData.append(`invited_suppliers[${i}][_id]`, newBid.invited_suppliers[i]!);
 
     // Garantir que o status seja sempre draft para rascunhos
-    formData.append('status', BidStatusEnum.draft);
+    // Removido append duplicado de status para evitar envio como array
     
     // Verificar se há lotes para adicionar
     if (newBid.add_allotment && newBid.add_allotment.length > 0) {
