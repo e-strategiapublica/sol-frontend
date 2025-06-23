@@ -16,7 +16,7 @@ import { SupplierService } from 'src/services/supplier.service';
 import { UserService } from 'src/services/user.service';
 import { ItemsService } from "src/services/items.service";
 import { WorkPlanDto } from "src/dtos/convenio/convenio-response.dto";
-import { SHA256, enc } from "crypto-js";
+import { sha256 } from '../sha256.util';
 
 @Component({
   selector: 'app-associacao-edit-licitacao',
@@ -243,7 +243,7 @@ export class AssociacaoEditLicitacaoComponent {
   async getItems(){
 
     this.itemsService.getItems().subscribe({
-      next: success => {    
+      next: async success => {    
 
         this.costItemsList = success;
         this.costItemsListFilter = [];
@@ -271,7 +271,7 @@ export class AssociacaoEditLicitacaoComponent {
         }
 
         for(let i=0;i<this.lotItemsList.length;i++){
-          this.lotItemsList[i].id = SHA256(this.lotItemsList[i].name+this.lotItemsList[i].quantity+this.lotItemsList[i].unit+new Date()).toString(enc.Hex);      
+          this.lotItemsList[i].id = await sha256(this.lotItemsList[i].name+this.lotItemsList[i].quantity+this.lotItemsList[i].unit+new Date());      
         }
 
       },
