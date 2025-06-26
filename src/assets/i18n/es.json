@@ -872,7 +872,6 @@
     "ESTIMATED_VALUE": "Valor estimado de las licitaciones"
   },
   "PROPOSAL": {
-    "NO_PROPOSALS_FOR_BATCH": "No se encontraron propuestas para este lote.",
     "PROPOSAL_TRIAGE": "Proposta em Triagem",
     "VIEW_PROPOSAL": "Visualizar propostas",
     "SUPPLIER": "Fornecedor",
