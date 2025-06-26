@@ -122,6 +122,14 @@
     "CONFIRM_NEW_PASSWORD": "Confirme sua Nova Senha",
     "EDIT_PROFILE_TITLE": "Editar Perfil"
   },
+   "PROPOSAL": {
+    "NO_PROPOSALS_FOR_BATCH": "Nenhuma proposta encontrada para este lote.",
+    "PROPOSAL_TRIAGE": "Proposta em Triagem",
+    "VIEW_PROPOSAL": "Visualizar propostas",
+    "SUPPLIER": "Fornecedor",
+    "PROPOSAL_REPROVED": "Reprovar Proposta",
+    "PROPOSAL_APROVED": "Aprovar Proposta"
+  },
   "NOTIFICATION": {
     "TITLE": "Notificações",
     "INVITATION": "Convite para licitação de número",
@@ -868,13 +876,6 @@
     "AWAITING": "Aguardando",
     "BIDDINGS_AMOUNT": "Quantidade de licitações",
     "ESTIMATED_VALUE": "Valor estimado das licitações"
-  },
-  "PROPOSAL": {
-    "PROPOSAL_TRIAGE": "Proposta em Triagem",
-    "VIEW_PROPOSAL": "Visualizar propostas",
-    "SUPPLIER": "Fornecedor",
-    "PROPOSAL_REPROVED": "Reprovar Proposta",
-    "PROPOSAL_APROVED": "Aprovar Proposta"
   },
   "TOASTRS": {
     "NEW_ITEM": "Item cadastrado com sucesso!",

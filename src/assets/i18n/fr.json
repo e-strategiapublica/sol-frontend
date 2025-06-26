@@ -867,6 +867,7 @@
     "ESTIMATED_VALUE": "Valeur estimée des appels d'offres"
   },
   "PROPOSAL": {
+    "NO_PROPOSALS_FOR_BATCH": "Aucune proposition trouvée pour ce lot.",
     "PROPOSAL_TRIAGE": "Proposition en cours de triage",
     "VIEW_PROPOSAL": "Voir les propositions",
     "SUPPLIER": "Fournisseur",
