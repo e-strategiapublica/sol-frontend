@@ -112,6 +112,9 @@
     "PARTE63": "O USUÁRIO deverá fazer uso do seguinte canal de comunicação do ADMINISTRADOR, caso necessite de qualquer esclarecimento sobre determinada disposição do presente documento: admin@lacchain.com"
    
   },
+  "PROPOSAL": {
+    "NO_PROPOSALS_FOR_BATCH": "Nenhuma proposta encontrada para este lote."
+  },
   "PROFILE": {
     "TITLE": "Perfil",
     "PROFILE_NAME": "Nome",
@@ -868,13 +871,6 @@
     "AWAITING": "Aguardando",
     "BIDDINGS_AMOUNT": "Quantidade de licitações",
     "ESTIMATED_VALUE": "Valor estimado das licitações"
-  },
-  "PROPOSAL": {
-    "PROPOSAL_TRIAGE": "Proposta em Triagem",
-    "VIEW_PROPOSAL": "Visualizar propostas",
-    "SUPPLIER": "Fornecedor",
-    "PROPOSAL_REPROVED": "Reprovar Proposta",
-    "PROPOSAL_APROVED": "Aprovar Proposta"
   },
   "TOASTRS": {
     "NEW_ITEM": "Item cadastrado com sucesso!",
