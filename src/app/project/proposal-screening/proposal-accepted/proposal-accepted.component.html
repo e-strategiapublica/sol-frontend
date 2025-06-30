@@ -1,22 +1,16 @@
 <div class="py-1">
   <div class="row mt-5">
     <div class="col-md-12">
-      <h2>{{ "PROPOSAL.VIEW_PROPOSAL" | translate }}</h2>
-      <hr class="bg-secondary" />
+      <h2>{{'PROPOSAL.VIEW_PROPOSAL' | translate}}</h2>
+      <hr class="bg-secondary">
     </div>
   </div>
   <div class="row mt-1">
     <div class="col-12">
-      <i
-        class="fa fa-arrow-left f-size-24 cursor-pointer"
-        [routerLink]="[
-          '/pages/licitacoes/detalhes-licitacoes/' + responseBid?._id
-        ]"
-        aria-hidden="true"
-      ></i>
+      <i class="fa fa-arrow-left f-size-24 cursor-pointer"
+        [routerLink]="['/pages/licitacoes/detalhes-licitacoes/' + responseBid?._id]" aria-hidden="true"></i>
     </div>
   </div>
-
   <div
     *ngFor="let item of responseProposal?.bid.add_allotment; let index = index"
   >
