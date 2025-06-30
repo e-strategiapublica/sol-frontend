@@ -6,4 +6,10 @@ export const environment = {
     port: "",
     path: "api",
   },
+
+  api: {
+    server: 'http://localhost:3000',
+    port: '',
+    path: 'http://localhost:3000',
+  }
 };
