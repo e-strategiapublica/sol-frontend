@@ -17,7 +17,7 @@ import { CostItemsService } from "src/services/cost-items.service";
 import { ItemsService } from "src/services/items.service";
 import { SupplierService } from "src/services/supplier.service";
 import { WorkPlanService } from "src/services/work-plan.service";
-import { SHA256, enc } from "crypto-js";
+import { sha256 } from '../sha256.util';
 
 @Component({
   selector: "app-associacao-register-licitacao",
@@ -204,10 +204,14 @@ export class AssociacaoRegisterLicitacaoComponent {
 
     fork.subscribe({ 
       next: data => {
-
         this.costItemsList = data.costItens;        
         this.userList = data.suppliers;
         // this.convenioList = data.convenios
+      
+
+        this.supplierList = data.suppliers; //Linha Adicionada
+  
+
         this.convenioList = data.convenios.filter((item: any) => item.activeStatus === AgreementActiveStatusEnum.active && !!item.association);
         let maxQuantity: number = 0;
 
@@ -388,7 +392,7 @@ export class AssociacaoRegisterLicitacaoComponent {
       this.stepper.next();
     }
     if (value === 'step3' && this.formModel.controls['modality'].value !== 'openClosed') {
-      alert("1")
+     
       if (this.formModel.controls['modality'].value === '') {
         this.toastrService.error('Selecione uma modalidade', '', { progressBar: true })
         return
@@ -518,28 +522,60 @@ export class AssociacaoRegisterLicitacaoComponent {
 
   onSubmitDraft() {
     this.isSubmit = true;
-    if (this.formModel.status == "INVALID") {
-
-      let errorMessage = 'Preencha todos os campos obrigatórios!';
+    // Verificamos apenas campos mínimos necessários para um rascunho
+    if (!this.formModel.controls["description"].value || !this.formModel.controls["insurance"].value) {
+      let errorMessage = 'Para salvar como rascunho, preencha ao menos a descrição e o convênio!';
 
       switch (this.storedLanguage) {
         case 'pt':
-          errorMessage = 'Preencha todos os campos obrigatórios!'
+          errorMessage = 'Para salvar como rascunho, preencha ao menos a descrição e o convênio!'
           break;
         case 'en':
-          errorMessage = 'Fill in all required fields!'
+          errorMessage = 'To save as a draft, fill in at least the description and agreement!'
           break;
         case 'fr':
-          errorMessage = 'Remplissez tous les champs obligatoires !'
+          errorMessage = 'Pour enregistrer comme brouillon, remplissez au moins la description et la convention !'
           break;
         case 'es':
-          errorMessage = '¡Complete todos los campos requeridos!'
+          errorMessage = '¡Para guardar como borrador, complete al menos la descripción y el acuerdo!'
           break;
       }
 
-
-      this.toastrService.error(errorMessage);
+      this.toastrService.error(errorMessage, "", { progressBar: true });
+      this.ngxSpinnerService.hide();
       return;
+    }
+    
+    // Garantir que os campos obrigatórios para o backend tenham valores padrão
+    if (!this.formDate.controls["initialDate"].value) {
+      this.formDate.controls["initialDate"].setValue(new Date().toISOString().split('T')[0]);
+    }
+    if (!this.formDate.controls["closureDate"].value) {
+      this.formDate.controls["closureDate"].setValue(new Date().toISOString().split('T')[0]);
+    }
+    if (!this.formDate.controls["executionDays"].value) {
+      this.formDate.controls["executionDays"].setValue("0");
+    }
+    if (!this.formDate.controls["timebreakerDays"].value) {
+      this.formDate.controls["timebreakerDays"].setValue("0");
+    }
+    if (!this.formDate.controls["deliveryPlace"].value) {
+      this.formDate.controls["deliveryPlace"].setValue("A definir");
+    }
+    if (!this.formModel.controls["biddingType"].value) {
+      this.formModel.controls["biddingType"].setValue("individualPrice");
+    }
+    if (!this.formModel.controls["modality"].value) {
+      this.formModel.controls["modality"].setValue("closedInvite");
+    }
+    if (!this.formModel.controls["classification"].value) {
+      this.formModel.controls["classification"].setValue("A definir");
+    }
+    if (!this.formDate.controls["stateSelect"].value) {
+      this.formDate.controls["stateSelect"].setValue("São Paulo");
+    }
+    if (!this.formDate.controls["citySelect"].value) {
+      this.formDate.controls["citySelect"].setValue("São Paulo");
     }
 
     let newBid: any;
@@ -621,13 +657,16 @@ export class AssociacaoRegisterLicitacaoComponent {
       for (let i = 0; i < newBid.invited_suppliers.length; i++)
         formData.append(`invited_suppliers[${i}][_id]`, newBid.invited_suppliers[i]!);      
 
-    if (newBid.add_allotment) {
+    // Garantir que sempre tenha pelo menos um lote para rascunho
+    if (newBid.add_allotment && newBid.add_allotment.length > 0) {
       for (let i = 0; i < newBid.add_allotment.length; i++) {
         formData.append(`add_allotment[${i}][allotment_name]`, newBid.add_allotment[i].allotment_name!);
         formData.append(`add_allotment[${i}][days_to_delivery]`, newBid.add_allotment[i].days_to_delivery!);
         formData.append(`add_allotment[${i}][place_to_delivery]`, newBid.add_allotment[i].place_to_delivery!);
         formData.append(`add_allotment[${i}][quantity]`, newBid.add_allotment[i].quantity!);
-        formData.append(`add_allotment[${i}][files]`, newBid.add_allotment[i].files!);
+        if (newBid.add_allotment[i].files) {
+          formData.append(`add_allotment[${i}][files]`, newBid.add_allotment[i].files!);
+        }
 
         for (let j = 0; j < newBid.add_allotment[i].add_item.length; j++) {
           formData.append(`add_allotment[${i}][add_item][${j}][group]`, newBid.add_allotment[i].add_item[j].group);
@@ -637,8 +676,19 @@ export class AssociacaoRegisterLicitacaoComponent {
           formData.append(`add_allotment[${i}][add_item][${j}][specification]`, newBid.add_allotment[i].add_item[j].specification);
         }
       }
+    } else {
+      // Se não houver lotes, criar um lote padrão para rascunho
+      formData.append(`add_allotment[0][allotment_name]`, 'Lote Rascunho');
+      formData.append(`add_allotment[0][days_to_delivery]`, '0');
+      formData.append(`add_allotment[0][place_to_delivery]`, 'A definir');
+      formData.append(`add_allotment[0][quantity]`, '0');
+      // Adicionar um item vazio ao lote
+      formData.append(`add_allotment[0][add_item][0][group]`, 'Sem grupo');
+      formData.append(`add_allotment[0][add_item][0][item]`, 'Item temporário');
+      formData.append(`add_allotment[0][add_item][0][quantity]`, '0');
+      formData.append(`add_allotment[0][add_item][0][unitMeasure]`, 'UN');
+      formData.append(`add_allotment[0][add_item][0][specification]`, 'Rascunho');
     }
-
 
     this.associationBidService.bidRegisterFormData(formData).subscribe({
       next: data => {
@@ -788,23 +838,39 @@ export class AssociacaoRegisterLicitacaoComponent {
       for (let i = 0; i < newBid.invited_suppliers.length; i++)
         formData.append(`invited_suppliers[${i}][_id]`, newBid.invited_suppliers[i]!);
 
-    if (newBid.add_allotment) {
-      
+    // Garantir que o status seja sempre draft para rascunhos
+    // Removido append duplicado de status para evitar envio como array
+    
+    // Verificar se há lotes para adicionar
+    if (newBid.add_allotment && newBid.add_allotment.length > 0) {
       for (let i = 0; i < newBid.add_allotment.length; i++) {
-        formData.append(`add_allotment[${i}][allotment_name]`, newBid.add_allotment[i].allotment_name!);
-        formData.append(`add_allotment[${i}][days_to_delivery]`, newBid.add_allotment[i].days_to_delivery!);
-        formData.append(`add_allotment[${i}][place_to_delivery]`, newBid.add_allotment[i].place_to_delivery!);
-        formData.append(`add_allotment[${i}][quantity]`, newBid.add_allotment[i].quantity!);
-        formData.append(`add_allotment[${i}][files]`, newBid.add_allotment[i].files!);
+        // Verificar se o lote tem os dados necessários antes de adicionar
+        if (newBid.add_allotment[i].allotment_name) {
+          formData.append(`add_allotment[${i}][allotment_name]`, newBid.add_allotment[i].allotment_name!);
+          formData.append(`add_allotment[${i}][days_to_delivery]`, newBid.add_allotment[i].days_to_delivery || '0');
+          formData.append(`add_allotment[${i}][place_to_delivery]`, newBid.add_allotment[i].place_to_delivery || 'A definir');
+          formData.append(`add_allotment[${i}][quantity]`, newBid.add_allotment[i].quantity || '0');
+          
+          // Verificar se há arquivo de lote antes de adicionar
+          if (newBid.add_allotment[i].files) {
+            formData.append(`add_allotment[${i}][files]`, newBid.add_allotment[i].files);
+          }
 
-        for (let j = 0; j < newBid.add_allotment[i].add_item.length; j++) {
-          formData.append(`add_allotment[${i}][add_item][${j}][group]`, newBid.add_allotment[i].add_item[j].group);
-          formData.append(`add_allotment[${i}][add_item][${j}][item]`, newBid.add_allotment[i].add_item[j].name);
-          formData.append(`add_allotment[${i}][add_item][${j}][quantity]`, newBid.add_allotment[i].add_item[j].quantity);
-          formData.append(`add_allotment[${i}][add_item][${j}][unitMeasure]`, newBid.add_allotment[i].add_item[j].unit);
-          formData.append(`add_allotment[${i}][add_item][${j}][specification]`, newBid.add_allotment[i].add_item[j].specification);
+          // Verificar se há itens no lote antes de adicionar
+          if (newBid.add_allotment[i].add_item && newBid.add_allotment[i].add_item.length > 0) {
+            for (let j = 0; j < newBid.add_allotment[i].add_item.length; j++) {
+              formData.append(`add_allotment[${i}][add_item][${j}][group]`, newBid.add_allotment[i].add_item[j].group || 'Sem grupo');
+              formData.append(`add_allotment[${i}][add_item][${j}][item]`, newBid.add_allotment[i].add_item[j].name || '');
+              formData.append(`add_allotment[${i}][add_item][${j}][quantity]`, newBid.add_allotment[i].add_item[j].quantity || '0');
+              formData.append(`add_allotment[${i}][add_item][${j}][unitMeasure]`, newBid.add_allotment[i].add_item[j].unit || 'UN');
+              formData.append(`add_allotment[${i}][add_item][${j}][specification]`, newBid.add_allotment[i].add_item[j].specification || 'Sem especificação');
+            }
+          }
         }
       }
+    } else {
+      // Se não houver lotes, enviar um array vazio para o backend
+      formData.append('add_allotment', JSON.stringify([]));
     }
 
     this.ngxSpinnerService.show();
@@ -887,6 +953,7 @@ export class AssociacaoRegisterLicitacaoComponent {
 
   addSupplier() {
     const supplierId = this.formAddLots.controls["inviteSuppliers"].value;
+    
     const supplier = this.selectSupplier(supplierId);
     if (supplier && !this.invitedSupplierId.includes(supplierId)) {
       this.invitedSupplierId.push(supplierId);
@@ -1150,7 +1217,7 @@ export class AssociacaoRegisterLicitacaoComponent {
     
   }
 
-  changeClassification() {
+  async changeClassification() {
     
     this.costItemsListFilter = [];
     this.costItemsListFilter = this.costItemsList.filter((a: any) => a.group?.category_name == this.formModel.controls['classification'].value);
@@ -1185,7 +1252,7 @@ export class AssociacaoRegisterLicitacaoComponent {
     this.lotItemsList = [...dataArrLotList];            
 
     for(let i=0;i<this.lotItemsList.length;i++){
-      this.lotItemsList[i].id = SHA256(this.lotItemsList[i].name+this.lotItemsList[i].quantity+this.lotItemsList[i].unit+new Date()).toString(enc.Hex);      
+      this.lotItemsList[i].id = await sha256(this.lotItemsList[i].name+this.lotItemsList[i].quantity+this.lotItemsList[i].unit+new Date());      
     }
 
 

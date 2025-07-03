@@ -197,7 +197,7 @@
     "REGISTERED_SUPPLIERS": "Proveedores registrados",
     "ONGOING_BIDDING": "Procesos de licitación en curso",
     "DURATION": "Duración",
-    "SEND_TIEBREAKER": "Enviar para desempate"
+    "SEND_TIEBREAKER": "Enviar a desempate"
   },
   "CREATE_BIDDING_STATUS": {
     "ALL": "Todos",
@@ -290,7 +290,7 @@
     "TIEBREAKER_DATE_ERROR": "El plazo para el desempate de la licitación es de 0 a 10 días"
   },
   "ERROR_MESSAGES": {
-    "INVALID": "Campo inválido!",
+    "INVALID": "¡Campo inválido!",
     "INVALID_EMAIL": "¡Email inválido!",
     "REQUIRED_EMAIL": "¡Email es obligatorio!",
     "REQUIRED_PASSWORD": "¡Contraseña es obligatoria!",
@@ -511,7 +511,7 @@
     "FAILED": "Fallido",
     "DRAFT": "En borrador",
     "RELEASED": "Lanzado",
-    "OPEN": "Aberta",
+    "OPEN": "Abierto",
     "COMPLETED": "Abierto",
     "REOPENED": "Reabierto",
     "ASSOCIATION": "Entidad",

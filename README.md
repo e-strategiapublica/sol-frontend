@@ -8,6 +8,14 @@ Projeto desenvolvido com [Angular CLI](https://github.com/angular/angular-cli) n
 
 ---
 
+## 🔒 Segurança e Criptografia
+
+A partir da versão atual, toda a criptografia simétrica baseada em `crypto-js` foi removida do frontend. A comunicação entre frontend e backend ocorre em texto puro/JSON, protegida exclusivamente pelo protocolo HTTPS.
+
+O uso de `crypto-js` permanece **apenas** para operações de hash SHA256 (ex: geração de IDs), nunca para criptografia de tráfego.
+
+---
+
 ## 🚀 Iniciando o Servidor de Desenvolvimento
 
 Para iniciar o servidor de desenvolvimento, utilize o comando abaixo:

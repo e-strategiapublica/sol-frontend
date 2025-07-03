@@ -25,7 +25,7 @@ export class SupplierService extends BaseService {
             .get(`${this.url}/get-by-id/${_id}`, this.authorizedHeader)
     }
 
-    supplierList(): Observable<SupplierRequestDto[]> {
+    supplierList(): Observable<SupplierRequestDto[]> {    
         return this.httpClient
             .get<SupplierRequestDto[]>(`${this.url}/list`, this.authorizedHeader)
     }
