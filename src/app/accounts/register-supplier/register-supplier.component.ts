@@ -18,6 +18,15 @@ import { TranslateService } from "@ngx-translate/core";
 import UserDataValidator from "src/utils/user-data-validator.utils";
 import { Location } from '@angular/common';
 
+// Validador customizado para CNPJ (antigo e novo)
+export function cnpjValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    if (!value) return null;
+    return UserDataValidator.validarCNPJ(value) ? null : { invalidCnpj: true };
+  };
+}
+
 @Component({
   selector: 'app-register-supplier',
   templateUrl: './register-supplier.component.html',
@@ -69,7 +78,7 @@ export class RegisterSupplierComponent implements OnInit {
       name: ["", [Validators.required]],
       nationality: [""],
       maritalStatus: [""],
-      mainCnpj: ["", [Validators.minLength(14)]],
+      mainCnpj: ["", [Validators.minLength(14), cnpjValidator()]],
       mainCpf: ["", [Validators.minLength(11)]],
       type: ["", [Validators.required]],
     });
