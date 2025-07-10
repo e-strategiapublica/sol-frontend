@@ -218,21 +218,27 @@ export class RegisterSupplierComponent implements OnInit {
       return this.cancelSubmit();
     }
 
-    const document = this.form.controls["mainCnpj"]?.value
-      ? this.form.controls["mainCnpj"]?.value
-      : this.form.controls["mainCpf"]?.value;
+    const isCnpj = this.form.controls["type"].value === "cnpj";
+    const mainCnpj = this.form.controls["mainCnpj"]?.value;
+    const mainCpf = this.form.controls["mainCpf"]?.value;
 
-    if (!document) return this.cancelSubmit();
+    if (isCnpj && !mainCnpj) return this.cancelSubmit();
+    if (!isCnpj && !mainCpf) return this.cancelSubmit();
 
     const newSupplier: SupplierRegisterDto = {
       name: this.form.controls["name"].value,
-      cpf: document.replace(/[^0-9]/g, ''),
-      type: this.form.controls["type"].value === "cpf" ? "pessoa_fisica" : "pessoa_juridica",
+      type: isCnpj ? "pessoa_juridica" : "pessoa_fisica",
       group_id: this.formCategoryAndSegments.controls["categories"].value,
       address: new AddressDto(),
       legal_representative: new LegalRepresentativeDto(),
       categoriesId: this.selectCategoriesAndSegments?.map(category => category._id || "") || [],
     };
+
+    if (isCnpj) {
+      newSupplier.cnpj = mainCnpj;
+    } else {
+      newSupplier.cpf = mainCpf.replace(/[^0-9]/g, '');
+    }
 
     newSupplier.address.city = this.formAddress.controls["city"].value;
     newSupplier.address.complement = this.formAddress.controls["complement"].value;

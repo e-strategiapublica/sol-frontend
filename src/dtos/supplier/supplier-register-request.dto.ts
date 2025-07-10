@@ -4,8 +4,9 @@ import { SuplierTypeEnum } from "./supplier-type.enum";
 
 export class SupplierRegisterDto {
 
-    name: string
-    cpf: string;
+    name: string;
+    cpf?: string;
+    cnpj?: string;
     type: string;
     address: AddressDto;
     legal_representative: LegalRepresentativeDto;
