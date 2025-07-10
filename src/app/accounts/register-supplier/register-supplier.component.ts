@@ -235,7 +235,7 @@ export class RegisterSupplierComponent implements OnInit {
     };
 
     if (isCnpj) {
-      newSupplier.cnpj = mainCnpj;
+      newSupplier.cnpj = mainCnpj.replace(/[^a-zA-Z0-9]/g, '');
     } else {
       newSupplier.cpf = mainCpf.replace(/[^0-9]/g, '');
     }
