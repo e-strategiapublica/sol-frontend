@@ -19,7 +19,7 @@ import UserDataValidator from "src/utils/user-data-validator.utils";
 import { Location } from '@angular/common';
 
 // Validador customizado para CNPJ (antigo e novo)
-export function cnpjValidator(): ValidatorFn {
+export function is_valid_cnpj(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
     if (!value) return null;
@@ -78,7 +78,7 @@ export class RegisterSupplierComponent implements OnInit {
       name: ["", [Validators.required]],
       nationality: [""],
       maritalStatus: [""],
-      mainCnpj: ["", [Validators.minLength(14), cnpjValidator()]],
+      mainCnpj: ["", [Validators.minLength(14), is_valid_cnpj()]],
       mainCpf: ["", [Validators.minLength(11)]],
       type: ["", [Validators.required]],
     });
