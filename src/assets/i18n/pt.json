@@ -115,6 +115,7 @@
   "PROFILE": {
     "TITLE": "Perfil",
     "PROFILE_NAME": "Nome",
+    "USER_TYPE": "Tipo de usuário",
     "CHANGE_PASSWORD_TITLE": "Alterar Senha",
     "CHANGE_PASSWORD_SUBTITLE": "Para alterar sua senha, digite sua senha atual e sua nova senha.",
     "CURRENT_PASSWORD": "Senha Atual",
