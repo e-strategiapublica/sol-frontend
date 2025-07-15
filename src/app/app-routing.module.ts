@@ -1,8 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
+import { inject } from '@angular/core';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/accounts/login', pathMatch: 'full' },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '',
+    canActivate: [() => {
+      const authService = inject(AuthService);
+      if (authService.getAuthenticatedUser() && authService.isJwtValid()) {
+        // Usuário autenticado
+        window.location.href = '/pages/dashboard';
+        return false;
+      } else {
+        // Não autenticado
+        window.location.href = '/accounts/login';
+        return false;
+      }
+    }],
+  },
   {
     path: 'accounts',
     loadChildren: () =>
