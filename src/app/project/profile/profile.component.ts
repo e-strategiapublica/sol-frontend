@@ -18,6 +18,22 @@ interface Role {
 })
 
 export class ProfileComponent {
+  // Lista de tipos de usuário traduzidos
+  userTypeList = [
+    { value: 'administrador', name: { 'pt': 'Administrador', 'en': 'Administrator', 'es': 'Administrador', 'fr': 'Administrateur' } },
+    { value: 'fornecedor', name: { 'pt': 'Fornecedor', 'en': 'Supplier', 'es': 'Proveedor', 'fr': 'Fournisseur' } },
+    { value: 'associacao', name: { 'pt': 'Associação', 'en': 'Association', 'es': 'Asociación', 'fr': 'Association' } },
+    { value: 'project_manager', name: { 'pt': 'Gerente de Projeto', 'en': 'Project Manager', 'es': 'Gerente de Proyecto', 'fr': 'Chef de Projet' } }
+  ];
+
+  getNameOfType(type: string): string | null {
+    const language = (localStorage.getItem('selectedLanguage') || 'pt') as 'pt' | 'en' | 'es' | 'fr';
+    const userType = this.userTypeList.find(t => t.value === type);
+    if (userType && userType.name[language]) {
+      return userType.name[language];
+    }
+    return null;
+  }
   changePassword!: FormGroup;
   roleList: Role[] = [
     {
