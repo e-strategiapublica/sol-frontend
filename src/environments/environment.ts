@@ -5,5 +5,5 @@ export const environment = {
     server: "http://207.246.127.17",
     port: "",
     path: "api",
-  },
+  }
 };

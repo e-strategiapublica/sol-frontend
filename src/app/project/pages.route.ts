@@ -253,7 +253,10 @@ const routerConfig: Routes = [
       { path: "modelo-contratos", component: ContractTemplatesComponent },
       { path: "modelo-contratos/novo-modelo", component: NewContractTemplatesComponent },
       { path: "modelo-contratos/editar-modelo/:_id", component: EditContractTemplatesComponent },
-      { path: "integracoes", component: AdministrationIntegrationsComponent },
+      // FUNCIONALIDADE DESATIVADA: Rota para Integração foi temporariamente desativada por decisão da equipe. Pode ser reativada no futuro.
+// { path: "integracoes", component: AdministrationIntegrationsComponent },
+// Redirecionando para o dashboard se alguém tentar acessar diretamente
+{ path: "integracoes", redirectTo: "dashboard", pathMatch: "full" },
       { path: "projetos", component: ProjectsComponent },
       { path: "criar-projeto", component: CreateProjectComponent },
       { path: "dados-projeto/:_id", component: ProjectsDataComponent,
