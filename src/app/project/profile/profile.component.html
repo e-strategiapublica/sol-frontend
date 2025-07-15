@@ -20,10 +20,9 @@
 						<h5 class="f-size-16">{{authService.getAuthenticatedUser().email}}</h5>
 					</div>
 					<div class="col-12 col-lg-12 p-2">
-						<h6 class="font-poppins f-size-14 text-secondary">Tipo de usuário</h6>
-						<h5 class="f-size-16">{{getNameOfRole(authService.getAuthenticatedUser().roles)}}</h5>
+						<h6 class="font-poppins f-size-14 text-secondary">{{"PROFILE.USER_TYPE" | translate}}</h6>
+						<h5 class="f-size-16">{{getNameOfType(authService.getAuthenticatedUser().type)}}</h5>
 					</div>
-
 					<div class="col-md-8 mt-4">
 						<button type="button" class="btn btn-light btn-lg btn-block mb-4 text-small"
 							(click)="open(content);">{{"BUTTON_TEXT.CHANGE_PASSWORD" | translate}}</button>

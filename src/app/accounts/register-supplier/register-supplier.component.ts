@@ -18,6 +18,15 @@ import { TranslateService } from "@ngx-translate/core";
 import UserDataValidator from "src/utils/user-data-validator.utils";
 import { Location } from '@angular/common';
 
+// Validador customizado para CNPJ (antigo e novo)
+export function is_valid_cnpj(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    if (!value) return null;
+    return UserDataValidator.validarCNPJ(value) ? null : { invalidCnpj: true };
+  };
+}
+
 @Component({
   selector: 'app-register-supplier',
   templateUrl: './register-supplier.component.html',
@@ -69,7 +78,7 @@ export class RegisterSupplierComponent implements OnInit {
       name: ["", [Validators.required]],
       nationality: [""],
       maritalStatus: [""],
-      mainCnpj: ["", [Validators.minLength(14)]],
+      mainCnpj: ["", [Validators.minLength(14), is_valid_cnpj()]],
       mainCpf: ["", [Validators.minLength(11)]],
       type: ["", [Validators.required]],
     });
@@ -209,21 +218,27 @@ export class RegisterSupplierComponent implements OnInit {
       return this.cancelSubmit();
     }
 
-    const document = this.form.controls["mainCnpj"]?.value
-      ? this.form.controls["mainCnpj"]?.value
-      : this.form.controls["mainCpf"]?.value;
+    const isCnpj = this.form.controls["type"].value === "cnpj";
+    const mainCnpj = this.form.controls["mainCnpj"]?.value;
+    const mainCpf = this.form.controls["mainCpf"]?.value;
 
-    if (!document) return this.cancelSubmit();
+    if (isCnpj && !mainCnpj) return this.cancelSubmit();
+    if (!isCnpj && !mainCpf) return this.cancelSubmit();
 
     const newSupplier: SupplierRegisterDto = {
       name: this.form.controls["name"].value,
-      cpf: document.replace(/[^0-9]/g, ''),
-      type: this.form.controls["type"].value === "cpf" ? "pessoa_fisica" : "pessoa_juridica",
+      type: isCnpj ? "pessoa_juridica" : "pessoa_fisica",
       group_id: this.formCategoryAndSegments.controls["categories"].value,
       address: new AddressDto(),
       legal_representative: new LegalRepresentativeDto(),
       categoriesId: this.selectCategoriesAndSegments?.map(category => category._id || "") || [],
     };
+
+    if (isCnpj) {
+      newSupplier.cnpj = mainCnpj.replace(/[^a-zA-Z0-9]/g, '');
+    } else {
+      newSupplier.cpf = mainCpf.replace(/[^0-9]/g, '');
+    }
 
     newSupplier.address.city = this.formAddress.controls["city"].value;
     newSupplier.address.complement = this.formAddress.controls["complement"].value;

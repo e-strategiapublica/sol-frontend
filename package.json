@@ -32,7 +32,6 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "@swimlane/ngx-charts": "^20.1.2",
-
     "@types/node-geocoder": "^4.2.1",
     "axios": "^1.4.0",
     "bootstrap": "^4.5.0",
@@ -41,7 +40,6 @@
     "chart.js": "^4.3.0",
     "chartjs-plugin-datalabels": "^2.2.0",
     "cidades-estados": "^1.4.1",
-
     "date-fns": "^2.30.0",
     "estados-cidades": "^4.1.0",
     "file-saver": "^2.0.5",

@@ -102,6 +102,11 @@
                                             translate }}
                                         </p>
                                     </div>
+                                    <div *ngIf="form.controls['mainCnpj'].errors?.['invalidCnpj'] && (form.controls['mainCnpj'].touched || isSubmit)"
+                                        class="div-msg-error mt-2">
+                                        <img src="../../../assets/images/icon-alert.svg" class="img-msg-error" alt="">
+                                        <p class="font-poppins font-size-14 m-0">CNPJ inválido (antigo ou novo padrão).</p>
+                                    </div>
                                 </div>
 
                                 <div *ngIf="form.controls['type']?.value == 'cpf'" class="col-md-6 col-sm-12 mt-3">

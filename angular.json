@@ -17,18 +17,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",            
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
               "src/bootstrap-custom.css",
@@ -90,23 +85,23 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.local.ts"
                 }
-              ],
-            },            
+              ]
+            },
             "qa": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.qa.ts"
                 }
-              ],
-            },                  
+              ]
+            },
             "cooperar": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.cooperar.ts"
                 }
-              ],
+              ]
             },
             "bahia": {
               "fileReplacements": [
@@ -114,7 +109,7 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.bahia.ts"
                 }
-              ],
+              ]
             },
             "development": {
               "vendorChunk": true,
@@ -141,16 +136,16 @@
               "browserTarget": "sol-app-frontend:build:development"
             },
             "local": {
-               "browserTarget": "sol-app-frontend:build:local"
+              "browserTarget": "sol-app-frontend:build:local"
             },
             "qa": {
-               "browserTarget": "sol-app-frontend:build:qa"
+              "browserTarget": "sol-app-frontend:build:qa"
             },
             "cooperar": {
-               "browserTarget": "sol-app-frontend:build:cooperar"
+              "browserTarget": "sol-app-frontend:build:cooperar"
             },
             "bahia": {
-               "browserTarget": "sol-app-frontend:build:bahia"
+              "browserTarget": "sol-app-frontend:build:bahia"
             }
           },
           "defaultConfiguration": "development"
@@ -164,19 +159,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }
