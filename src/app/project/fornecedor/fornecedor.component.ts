@@ -1,28 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { debounceTime } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteFornecedorComponent } from './delete-fornecedor/delete-fornecedor.component';
 import { ToastrService } from 'ngx-toastr';
 import { SupplierService } from '../../../services/supplier.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import FilterFuzzy from 'src/utils/filterFuzzy.util';
 import Fuse from 'fuse.js';
 import { AuthService } from 'src/services/auth.service';
 import { SupplierGetResponseDto } from 'src/dtos/supplier/supplier-get-response.dto';                                     
-
 
 @Component({
   selector: 'app-fornecedor',
   templateUrl: './fornecedor.component.html',
   styleUrls: ['./fornecedor.component.scss']
 })
-export class FornecedorComponent {
+export class FornecedorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   currentPage: number = 1;
   itensPerPage: number = 8;
-  fornecedor: SupplierGetResponseDto[];
-  fornecedorFilter: SupplierGetResponseDto[];
+  fornecedor: SupplierGetResponseDto[] = [];
+  fornecedorFilter: SupplierGetResponseDto[] = [];
   form: FormGroup;
+  private fuse: Fuse<SupplierGetResponseDto> | null = null;
+  private searchInputListener?: EventListener;
+  private valueChangesSubscription: any;
+
+  @ViewChild('searchInput', { static: false }) searchInputRef!: ElementRef<HTMLInputElement>;
 
   constructor(
     public authService: AuthService,
@@ -33,58 +37,108 @@ export class FornecedorComponent {
     private router: Router
   ) {
     this.form = this.formBuilder.group({
-      search: ['', [Validators.required, Validators.minLength(3)]],
+      search: [''],
     });
   }
 
   ngOnInit(): void {
-
     const id = localStorage.getItem('id_fornecedor');
     if(id && id == '0'){      
       localStorage.removeItem('id_fornecedor')
       this.fornecedorFilter = this._supplierService.getFornecedorFilterList();
       this.fornecedor = this._supplierService.getFornecedorList();
+      this.setupFuse();
     }else{
-      this.list()  
+      this.list();
     }
-    
-    this.form.controls['search'].valueChanges.subscribe((text: string) => {
-      if (text) {
-        //   this.fornecedor = this.fornecedor.filter((item: any) =>
-        //   item.name.toLowerCase().includes(text) ||
-        //   item.cpf.toLowerCase().includes(text) ||
-        //   item.address.city.toLowerCase().includes(text)
-        // );
-        
-        
-        const name = this.fornecedor.filter(obj => ((obj.name).toLowerCase()).includes(text.toLowerCase()));
-        const cpf = this.fornecedor.filter(obj => ((obj.cpf).toLowerCase()).includes(text.toLowerCase()));
 
-        const array = [...name, ...cpf]
-        const dataArr = new Set(array)
-        const result = [...dataArr];                         
+    this.valueChangesSubscription = this.form.controls['search'].valueChanges
+      .pipe(debounceTime(300))
+      .subscribe((text) => {
+        this.applyFilter(text as string);
+      });
+  }
 
-        this.fornecedorFilter = result
+  ngAfterViewInit(): void {
+    // Adiciona listener do Enter de forma segura via ViewChild
+    if (this.searchInputRef && this.searchInputRef.nativeElement) {
+      this.searchInputListener = (event: Event) => {
+        const keyboardEvent = event as KeyboardEvent;
+        if (keyboardEvent.key === 'Enter') {
+          keyboardEvent.preventDefault();
+        }
+      };
+      this.searchInputRef.nativeElement.addEventListener('keydown', this.searchInputListener);
+    }
+  }
 
+  ngOnDestroy(): void {
+    // Remove o listener do Enter para evitar vazamento de memória
+    if (this.searchInputRef && this.searchInputListener) {
+      this.searchInputRef.nativeElement.removeEventListener('keydown', this.searchInputListener);
+    }
+    if (this.valueChangesSubscription) {
+      this.valueChangesSubscription.unsubscribe();
+    }
+  }
+
+  private setupFuse(): void {
+    if (this.fornecedor && this.fornecedor.length > 0) {
+      this.fuse = new Fuse(this.fornecedor, {
+        keys: [
+          {
+            name: 'name',
+            getFn: (obj: any) => obj.name || ''
+          },
+          {
+            name: 'cpf',
+            getFn: (obj: any) => obj.cpf || ''
+          },
+          {
+            name: 'address.city',
+            getFn: (obj: any) => obj.address && obj.address.city ? obj.address.city : ''
+          }
+        ],
+        threshold: 0.4,
+        ignoreLocation: true,
+        minMatchCharLength: 1
+      });
+    } else {
+      this.fuse = null;
+    }
+  }
+
+  private applyFilter(text: string): void {
+    if (text && text.trim().length > 0) {
+      if (this.fuse) {
+        const result = this.fuse.search(text).map(res => res.item);
+        this.fornecedorFilter = result;
+      } else {
+        const lowerText = text.toLowerCase();
+        this.fornecedorFilter = this.fornecedor.filter(item =>
+          (item.name && item.name.toLowerCase().includes(lowerText)) ||
+          (item.cpf && item.cpf.toLowerCase().includes(lowerText)) ||
+          (item.address && item.address.city && item.address.city.toLowerCase().includes(lowerText))
+        );
       }
-
-      else
-        this.fornecedorFilter = this.fornecedor
-    });
-
-    
+    } else {
+      this.fornecedorFilter = this.fornecedor;
+    }
   }
 
   list() {
-    this._supplierService.supplierList().subscribe((response: any) => {
-      this.fornecedor = response;
-      this.fornecedorFilter = response
-
-      this._supplierService.setFornecedorFilterList(response);
-      this._supplierService.setFornecedorList(response);
-
+    this._supplierService.supplierList().subscribe({
+      next: (response: any) => {
+        this.fornecedor = response;
+        this.fornecedorFilter = response;
+        this._supplierService.setFornecedorFilterList(response);
+        this._supplierService.setFornecedorList(response);
+        this.setupFuse();
+      },
+      error: (err) => {
+        this.toastrService.error('Erro ao buscar fornecedores', 'Erro');
+      }
     });
-    
   }
 
   openModal(fornecedor: any) {

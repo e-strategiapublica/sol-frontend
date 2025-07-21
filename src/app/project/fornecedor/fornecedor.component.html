@@ -8,8 +8,9 @@
   <form [formGroup]="form">
     <div class="row mt-4">
       <div class="col-md-9">
-        <input type="text" class="form-control form-control-lg text-secondary input-height-border" 
+        <input type="text" class="form-control form-control-lg text-secondary input-height-border"
           formControlName="search"
+          #searchInput
           placeholder="{{'SUPPLIER.SEARCH_NAME' | translate}}">
       </div>
       <div class="col-md-3" *ngIf="authService.getAuthenticatedUser().roles !== 'visualizador_projetos'">
