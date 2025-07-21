@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { debounceTime } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteFornecedorComponent } from './delete-fornecedor/delete-fornecedor.component';
 import { ToastrService } from 'ngx-toastr';
@@ -25,7 +26,7 @@ export class FornecedorComponent implements OnInit, OnDestroy, AfterViewInit {
   private searchInputListener?: EventListener;
   private valueChangesSubscription: any;
 
-  @ViewChild('searchInput', { static: false }) searchInputRef!: ElementRef;
+  @ViewChild('searchInput', { static: false }) searchInputRef!: ElementRef<HTMLInputElement>;
 
   constructor(
     public authService: AuthService,
@@ -51,30 +52,30 @@ export class FornecedorComponent implements OnInit, OnDestroy, AfterViewInit {
       this.list();
     }
 
-    this.valueChangesSubscription = this.form.controls['search'].valueChanges.subscribe((text: string) => {
-      this.applyFilter(text);
-    });
+    this.valueChangesSubscription = this.form.controls['search'].valueChanges
+      .pipe(debounceTime(300))
+      .subscribe((text) => {
+        this.applyFilter(text as string);
+      });
   }
 
   ngAfterViewInit(): void {
-    // Adiciona listener do Enter após view inicializada
-    const input = document.querySelector('input[formControlName="search"]');
-    if (input) {
+    // Adiciona listener do Enter de forma segura via ViewChild
+    if (this.searchInputRef && this.searchInputRef.nativeElement) {
       this.searchInputListener = (event: Event) => {
         const keyboardEvent = event as KeyboardEvent;
         if (keyboardEvent.key === 'Enter') {
           keyboardEvent.preventDefault();
         }
       };
-      input.addEventListener('keydown', this.searchInputListener);
+      this.searchInputRef.nativeElement.addEventListener('keydown', this.searchInputListener);
     }
   }
 
   ngOnDestroy(): void {
     // Remove o listener do Enter para evitar vazamento de memória
-    const input = document.querySelector('input[formControlName="search"]');
-    if (input && this.searchInputListener) {
-      input.removeEventListener('keydown', this.searchInputListener);
+    if (this.searchInputRef && this.searchInputListener) {
+      this.searchInputRef.nativeElement.removeEventListener('keydown', this.searchInputListener);
     }
     if (this.valueChangesSubscription) {
       this.valueChangesSubscription.unsubscribe();
@@ -82,7 +83,7 @@ export class FornecedorComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private setupFuse(): void {
-    if (typeof Fuse !== 'undefined' && this.fornecedor && this.fornecedor.length > 0) {
+    if (this.fornecedor && this.fornecedor.length > 0) {
       this.fuse = new Fuse(this.fornecedor, {
         keys: [
           {
@@ -126,12 +127,17 @@ export class FornecedorComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   list() {
-    this._supplierService.supplierList().subscribe((response: any) => {
-      this.fornecedor = response;
-      this.fornecedorFilter = response;
-      this._supplierService.setFornecedorFilterList(response);
-      this._supplierService.setFornecedorList(response);
-      this.setupFuse();
+    this._supplierService.supplierList().subscribe({
+      next: (response: any) => {
+        this.fornecedor = response;
+        this.fornecedorFilter = response;
+        this._supplierService.setFornecedorFilterList(response);
+        this._supplierService.setFornecedorList(response);
+        this.setupFuse();
+      },
+      error: (err) => {
+        this.toastrService.error('Erro ao buscar fornecedores', 'Erro');
+      }
     });
   }
 
