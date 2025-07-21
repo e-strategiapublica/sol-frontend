@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteClassComponent } from './delete-categorias.component';
+import { DeleteClassComponent } from './delete-class.component';
 
 describe('DeleteClassComponent', () => {
   let component: DeleteClassComponent;

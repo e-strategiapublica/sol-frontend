@@ -15,7 +15,7 @@ import DocuemntUtil from '../../../utils/document.util';
 export class FornecedorMapComponent implements OnInit, AfterViewInit {
 
 
-  map: L.DrawMap; 
+  map: L.Map; 
 
   loggesdUser: any; 
   loggedtSupplier: any; 

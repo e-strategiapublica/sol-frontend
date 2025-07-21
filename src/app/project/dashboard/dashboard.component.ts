@@ -41,7 +41,7 @@ export class DashboardComponent implements AfterViewInit {
   novoArray: any = []
   mapLimits: [number, number][] = [];
 
-  map: L.DrawMap;
+  map: L.Map;
 
   licitacoesId: any;
   licitacoesList: any[];

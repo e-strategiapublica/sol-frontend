@@ -17,7 +17,7 @@ export class AssociacaoMapComponent implements OnInit, AfterViewInit {
   loggesdUser: any;  
   loggedtAssociation: any;  
  
-  map: L.DrawMap;  
+  map: L.Map;  
  
   fornecedorList: SupplierRequestDto[]; 
  

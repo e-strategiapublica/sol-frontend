@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeletePdmComponent } from './delete-categorias.component';
+import { DeletePdmComponent } from './delete-pdm.component';
 
 describe('DeletePdmComponent', () => {
   let component: DeletePdmComponent;

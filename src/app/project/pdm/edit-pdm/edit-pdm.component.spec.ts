@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditPDMComponent } from './edit-categorias.component';
+import { EditPdmComponent } from './edit-pdm.component';
 
-describe('EditPDMComponent', () => {
-  let component: EditPDMComponent;
-  let fixture: ComponentFixture<EditPDMComponent>;
+describe('EditPdmComponent', () => {
+  let component: EditPdmComponent;
+  let fixture: ComponentFixture<EditPdmComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditPDMComponent ]
+      declarations: [ EditPdmComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditPDMComponent);
+    fixture = TestBed.createComponent(EditPdmComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

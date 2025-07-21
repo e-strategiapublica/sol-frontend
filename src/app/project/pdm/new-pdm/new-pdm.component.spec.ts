@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewPdmComponent } from './new-categorias.component';
+import { NewPdmComponent } from './new-pdm.component';
 
 describe('NewPdmComponent', () => {
   let component: NewPdmComponent;

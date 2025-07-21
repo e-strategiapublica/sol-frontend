@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PDMComponent } from './categorias.component';
+import { PDMComponent } from './pdm.component';
 
 describe('PDMComponent', () => {
   let component: PDMComponent;

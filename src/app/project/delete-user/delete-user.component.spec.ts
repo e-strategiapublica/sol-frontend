@@ -1,18 +1,33 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateModule } from '@ngx-translate/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { UserService } from 'src/services/user.service';
+import { AuthService } from 'src/services/auth.service';
+import { ToastrService, TOAST_CONFIG } from 'ngx-toastr';
+import { UserServiceMock, AuthServiceMock, ToastrServiceMock, ToastConfigMock } from 'src/testing/test-mocks';
 
-import { DeleteUserAssociacaoComponent } from './delete-user.component';
+import { DeleteUserComponent } from './delete-user.component';
 
-describe('DeleteUserAssociacaoComponent', () => {
-  let component: DeleteUserAssociacaoComponent;
-  let fixture: ComponentFixture<DeleteUserAssociacaoComponent>;
+describe('DeleteUserComponent', () => {
+  let component: DeleteUserComponent;
+  let fixture: ComponentFixture<DeleteUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteUserAssociacaoComponent ]
+      declarations: [ DeleteUserComponent ],
+      imports: [HttpClientTestingModule, TranslateModule.forRoot()],
+      providers: [
+        { provide: UserService, useClass: UserServiceMock },
+        { provide: AuthService, useClass: AuthServiceMock },
+        { provide: ToastrService, useClass: ToastrServiceMock },
+        { provide: TOAST_CONFIG, useValue: ToastConfigMock },
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DeleteUserAssociacaoComponent);
+    fixture = TestBed.createComponent(DeleteUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
