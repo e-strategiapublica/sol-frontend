@@ -48,29 +48,46 @@ export class FornecedorComponent {
       this.list()  
     }
     
+    // Busca dinâmica: inclui fuzzy search, fallback para includes/toLowerCase
     this.form.controls['search'].valueChanges.subscribe((text: string) => {
-      if (text) {
-        //   this.fornecedor = this.fornecedor.filter((item: any) =>
-        //   item.name.toLowerCase().includes(text) ||
-        //   item.cpf.toLowerCase().includes(text) ||
-        //   item.address.city.toLowerCase().includes(text)
-        // );
-        
-        
-        const name = this.fornecedor.filter(obj => ((obj.name).toLowerCase()).includes(text.toLowerCase()));
-        const cpf = this.fornecedor.filter(obj => ((obj.cpf).toLowerCase()).includes(text.toLowerCase()));
-
-        const array = [...name, ...cpf]
-        const dataArr = new Set(array)
-        const result = [...dataArr];                         
-
-        this.fornecedorFilter = result
-
+      if (text && text.trim().length > 0) {
+        // Fuzzy search usando Fuse.js se disponível
+        if (typeof Fuse !== 'undefined') {
+          const fuse = new Fuse(this.fornecedor, {
+            keys: ['name', 'cpf', 'address.city'],
+            threshold: 0.4,
+            ignoreLocation: true,
+            minMatchCharLength: 1
+          });
+          const result = fuse.search(text).map(res => res.item);
+          this.fornecedorFilter = result;
+        } else {
+          // Fallback: includes + toLowerCase
+          const lowerText = text.toLowerCase();
+          this.fornecedorFilter = this.fornecedor.filter(item =>
+            (item.name && item.name.toLowerCase().includes(lowerText)) ||
+            (item.cpf && item.cpf.toLowerCase().includes(lowerText)) ||
+            (item.address && item.address.city && item.address.city.toLowerCase().includes(lowerText))
+          );
+        }
+      } else {
+        this.fornecedorFilter = this.fornecedor;
       }
-
-      else
-        this.fornecedorFilter = this.fornecedor
     });
+
+    // Desabilitar ação do Enter no campo de busca
+    setTimeout(() => {
+      const searchInput = document.querySelector('input[formControlName="search"]');
+      if (searchInput) {
+        searchInput.addEventListener('keydown', (event: Event) => {
+          const keyboardEvent = event as KeyboardEvent;
+          if (keyboardEvent.key === 'Enter') {
+            keyboardEvent.preventDefault();
+            // Não faz nada ao pressionar Enter
+          }
+        });
+      }
+    }, 0);
 
     
   }
