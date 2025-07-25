@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core'; 
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment.prod'; 
 import * as L from 'leaflet'; 
 import { AssociationService } from '../../../services/association.service'; 
 import { AuthService } from '../../../services/auth.service'; 
@@ -38,7 +39,8 @@ export class AssociacaoMapComponent implements OnInit, AfterViewInit {
   }
 
   private _initMap() {
-    this.map = L.map('map').setView([-23.6820635, -46.924961], 8); 
+    const { lat, lng, zoom } = environment.mapInitialCoords;
+    this.map = L.map('map').setView([lat, lng], zoom);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { 
       maxZoom: 19, 
