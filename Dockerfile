@@ -13,8 +13,6 @@ RUN yarn install
 # Copiar o restante do projeto
 COPY . .
 
-# Copiar arquivo .env (se existir)
-COPY .env .env
 
 # Copiar e dar permissão ao entrypoint.sh
 COPY entrypoint.sh ./entrypoint.sh
