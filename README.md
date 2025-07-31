@@ -8,6 +8,27 @@ Projeto desenvolvido com [Angular CLI](https://github.com/angular/angular-cli) n
 
 ---
 
+## 🌱 Variáveis de Ambiente do Projeto
+
+Este projeto utiliza variáveis de ambiente para configuração de diversos comportamentos, inclusive a posição inicial do mapa do dashboard.
+
+### `MAP_INITIAL_COORDS`
+- **Descrição:** Define a posição inicial do mapa exibido no dashboard.
+- **Formato:** `lat:<valor>,lng:<valor>,zoom:<valor>`
+- **Exemplo:**
+  ```env
+  MAP_INITIAL_COORDS=lat:-23.5505,lng:-46.6333,zoom:12
+  ```
+- **Detalhes:**
+  - Cada cliente pode customizar este valor em seu próprio `.env`.
+  - O valor é lido durante o build do Docker e injetado automaticamente no arquivo `environment.prod.ts` do Angular.
+  - Valores inválidos ou ausentes são substituídos por padrões seguros durante o build (`lat=-23.5505`, `lng=-46.6333`, `zoom=12`).
+  - Não depende do backend; a configuração é fixa por build/deploy.
+
+Se novas variáveis de ambiente forem adicionadas ao projeto, documente-as nesta seção.
+
+---
+
 ## 🔒 Segurança e Criptografia
 
 A partir da versão atual, toda a criptografia simétrica baseada em `crypto-js` foi removida do frontend. A comunicação entre frontend e backend ocorre em texto puro/JSON, protegida exclusivamente pelo protocolo HTTPS.

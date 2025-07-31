@@ -6,3 +6,5 @@ services:
     ports:
       - "80:8080"  # Mapeando a porta 8080 do container para a porta 80 da máquina local
     restart: always
+    environment:
+      - MAP_INITIAL_COORDS=lat=-23.5505,lng=-46.6333,zoom=12

@@ -13,8 +13,13 @@ RUN yarn install
 # Copiar o restante do projeto
 COPY . .
 
-# Construir o projeto Angular para produção
-RUN yarn build
+
+# Copiar e dar permissão ao entrypoint.sh
+COPY entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
+
+# Rodar entrypoint.sh para gerar environment.prod.ts e depois buildar
+RUN ./entrypoint.sh yarn build
 
 # Expor a porta 80
 EXPOSE 80
