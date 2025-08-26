@@ -922,6 +922,7 @@
     "ERROR_UPDATE_NAME": "Erro ao atualizar o usuário",
     "ERROR_ACCEPT_PROPOSAL": "Erro ao aceitar proposta",
     "SUCCESS_ACCEPT_PROPOSAL": "Proposta aceita com sucesso",
+    "ERROR_BATCH_IN_ANALYSIS": "No es posible aceptar propuestas mientras el lote está en análisis.",
     "EDIT_BID": "Editar Convênio",
     "CREATE_BID": "Novo Grupo",
     "MUST_OFFICE": "Se requiere posición",

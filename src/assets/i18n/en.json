@@ -921,14 +921,12 @@
     "ERROR_UPDATE_NAME": "Error while updating the user",
     "ERROR_ACCEPT_PROPOSAL": "Error while accepting proposal",
     "SUCCESS_ACCEPT_PROPOSAL": "Proposal successfully accepted!",
-    "EDIT_BID": "Edit Agreement",
-    "CREATE_BID": "New Group",
+    "ERROR_BATCH_IN_ANALYSIS": "Cannot accept proposals while the batch is under analysis.",
     "MUST_OFFICE": "Position is required",
     "ERROR_INVALID_CODE": "The code already exists",
     "INTERNAL_SERVER_ERROR": "Internal server error",
-    "ERROR_INVALID_CLASS_ID": "Invalid class id",
     "ERROR_BID_APPROVED": "Error. The tender was not approved",
-    "BID_APPOVED": "Bid approved!",
+    "BID_APPROVED": "Tender approved!",
     "ERROR_DOCUMENTS_MISSING": "Documents are missing"
   },
   "MODAL_PROPOSAL": {

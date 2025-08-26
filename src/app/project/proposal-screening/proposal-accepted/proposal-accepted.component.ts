@@ -116,7 +116,12 @@ export class ProposalAcceptedComponent {
         }
       
         if (backendMsg && typeof backendMsg === 'string' && backendMsg.length > 5) {
-          this.toastrService.error(backendMsg, '', { progressBar: true });
+          // Verifica se é a mensagem específica do lote em análise para traduzir
+          if (backendMsg.includes('Não é possível aceitar propostas enquanto o lote está em análise')) {
+            this.toastrService.error(this.translate.instant('TOASTRS.ERROR_BATCH_IN_ANALYSIS'), '', { progressBar: true });
+          } else {
+            this.toastrService.error(backendMsg, '', { progressBar: true });
+          }
         } else {
           this.toastrService.error(this.translate.instant('TOASTRS.ERROR_ACCEPT_PROPOSAL'), '', { progressBar: true });
         }
