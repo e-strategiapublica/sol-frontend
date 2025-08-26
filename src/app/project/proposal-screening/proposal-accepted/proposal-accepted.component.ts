@@ -86,11 +86,8 @@ export class ProposalAcceptedComponent {
     }
     this.proposalService.acceptProposalReviewer(event._id,dto).subscribe({
       next: data => {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.toastrService.success(this.translate.instant('TOASTRS.SUCCESS_ACCEPT_PROPOSAL'), '', { progressBar: true });
-
-this.router.navigate([this.location.path()]);
-});
+        this.router.navigate(['/pages/licitacoes/gestor-revisor-licitacao']);
       },
       error: error => {
         console.log('Erro completo:', error);
