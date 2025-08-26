@@ -93,8 +93,36 @@ this.router.navigate([this.location.path()]);
 });
       },
       error: error => {
-        console.error(error);
-        this.toastrService.error(this.translate.instant('TOASTRS.ERROR_ACCEPT_PROPOSAL'), '', { progressBar: true });
+        console.log('Erro completo:', error);
+        let backendMsg = '';
+      
+        if (error?.error) {
+          // Caso o backend envie um array de erros
+          if (Array.isArray(error.error.errors) && error.error.errors.length > 0) {
+            backendMsg = error.error.errors[0];
+          }
+          // Caso o backend envie um objeto com campo message
+          else if (typeof error.error === 'object' && error.error.message) {
+            backendMsg = error.error.message;
+          }
+          // Caso o backend envie texto puro ou JSON string
+          else if (typeof error.error === 'string') {
+            try {
+              const parsed = JSON.parse(error.error);
+              backendMsg = parsed.message || error.error;
+            } catch {
+              backendMsg = error.error;
+            }
+          }
+        } else if (error?.message) {
+          backendMsg = error.message;
+        }
+      
+        if (backendMsg && typeof backendMsg === 'string' && backendMsg.length > 5) {
+          this.toastrService.error(backendMsg, '', { progressBar: true });
+        } else {
+          this.toastrService.error(this.translate.instant('TOASTRS.ERROR_ACCEPT_PROPOSAL'), '', { progressBar: true });
+        }
       }
     })
   }
