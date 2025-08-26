@@ -163,19 +163,42 @@ this.router.navigate([this.location.path()]);
   approve(_id: string) {
     this.proposalService.acceptProposal(_id).subscribe({
       next: data => {
-        this.toastrService.success(this.translate.instant('TOASTRS.SUCCESS_ACCEPT_PROPOSAL'), '', { progressBar: true });
-        this.location.back();
+        this.toastrService.success('Proposta aceita com sucesso!', '', { progressBar: true });
+        this.router.navigate(['/pages/licitacoes/gestor-revisor-licitacao']);
       },
       error: error => {
-        console.error(error);
-        this.toastrService.error(this.translate.instant('TOASTRS.ERROR_ACCEPT_PROPOSAL'), '', { progressBar: true });
+        console.log('Erro completo:', error);
+        let backendMsg = '';
+      
+        if (error?.error) {
+          // Caso o backend envie um array de erros
+          if (Array.isArray(error.error.errors) && error.error.errors.length > 0) {
+            backendMsg = error.error.errors[0];
+          }
+          // Caso o backend envie um objeto com campo message
+          else if (typeof error.error === 'object' && error.error.message) {
+            backendMsg = error.error.message;
+          }
+          // Caso o backend envie texto puro ou JSON string
+          else if (typeof error.error === 'string') {
+            try {
+              const parsed = JSON.parse(error.error);
+              backendMsg = parsed.message || error.error;
+            } catch {
+              backendMsg = error.error;
+            }
+          }
+        } else if (error?.message) {
+          backendMsg = error.message;
+        }
+      
+        if (backendMsg && typeof backendMsg === 'string' && backendMsg.length > 5) {
+          this.toastrService.error(backendMsg, '', { progressBar: true });
+        } else {
+          this.toastrService.error(this.translate.instant('TOASTRS.ERROR_ACCEPT_PROPOSAL'), '', { progressBar: true });
+        }
       }
-    })
+    });
   }
 
 }
-
-// so exibe  botoes se for na melhor proposta
-// depois que a associacao aceitou, pode habilitar o botao ou exibir para a adm aceitar tbm
-// depois do aceito ou recusa da adm retirar os botoes
-// se associacao recusar e a adm aceitou a recusa a associacao pode selecionar outra proposta
