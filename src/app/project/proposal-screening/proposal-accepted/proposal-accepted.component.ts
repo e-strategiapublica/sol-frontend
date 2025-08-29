@@ -48,19 +48,16 @@ export class ProposalAcceptedComponent {
         },
         error: error => {
           this.spinnerService.hide();
-          console.error(error);
         },
       });
     });
   } 
   
   getResponse() {
-    console.log("callResponse");
     let userType: any = localStorage.getItem('user');
     this.user = JSON.parse(userType);
     this.proposalService.listProposalByBid(this.responseBid._id).subscribe({
       next: data => {
-        console.log("callResponse", data);
         this.responseProposal = data;
         this.responseProposal.proposals.sort((a: any, b: any) => {
           if (a.status === 'aceitoAssociacao') {
@@ -74,7 +71,6 @@ export class ProposalAcceptedComponent {
         this.spinnerService.hide();
       },
       error: error => {
-        console.error(error)
       }
     })
   }
@@ -90,41 +86,8 @@ export class ProposalAcceptedComponent {
         this.router.navigate(['/pages/licitacoes/gestor-revisor-licitacao']);
       },
       error: error => {
-        console.log('Erro completo:', error);
-        let backendMsg = '';
-      
-        if (error?.error) {
-          // Caso o backend envie um array de erros
-          if (Array.isArray(error.error.errors) && error.error.errors.length > 0) {
-            backendMsg = error.error.errors[0];
-          }
-          // Caso o backend envie um objeto com campo message
-          else if (typeof error.error === 'object' && error.error.message) {
-            backendMsg = error.error.message;
-          }
-          // Caso o backend envie texto puro ou JSON string
-          else if (typeof error.error === 'string') {
-            try {
-              const parsed = JSON.parse(error.error);
-              backendMsg = parsed.message || error.error;
-            } catch {
-              backendMsg = error.error;
-            }
-          }
-        } else if (error?.message) {
-          backendMsg = error.message;
-        }
-      
-        if (backendMsg && typeof backendMsg === 'string' && backendMsg.length > 5) {
-          // Verifica se é a mensagem específica do lote em análise para traduzir
-          if (backendMsg.includes('Não é possível aceitar propostas enquanto o lote está em análise')) {
-            this.toastrService.error(this.translate.instant('TOASTRS.ERROR_BATCH_IN_ANALYSIS'), '', { progressBar: true });
-          } else {
-            this.toastrService.error(backendMsg, '', { progressBar: true });
-          }
-        } else {
-          this.toastrService.error(this.translate.instant('TOASTRS.ERROR_ACCEPT_PROPOSAL'), '', { progressBar: true });
-        }
+        const errorMessage = error?.error?.message || this.translate.instant('TOASTRS.ERROR_ACCEPT_PROPOSAL');
+        this.toastrService.error(errorMessage, '', { progressBar: true });
       }
     })
   }
@@ -140,14 +103,13 @@ export class ProposalAcceptedComponent {
       next: data => {
 
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-                  this.toastrService.success('Proposta recusada com sucesso!', '', { progressBar: true });
+                  this.toastrService.success(this.translate.instant('TOASTRS.SUCCESS_REFUSE_PROPOSAL'), '', { progressBar: true });
 
           this.router.navigate([this.location.path()]);
         });
       },
       error: error => {
-        console.error(error);
-        this.toastrService.error('Erro ao recusar proposta!', '', { progressBar: true });
+        this.toastrService.error(this.translate.instant('TOASTRS.ERROR_REFUSE_PROPOSAL'), '', { progressBar: true });
       }
     })
 
@@ -193,40 +155,12 @@ export class ProposalAcceptedComponent {
   approve(_id: string) {
     this.proposalService.acceptProposal(_id).subscribe({
       next: data => {
-        this.toastrService.success('Proposta aceita com sucesso!', '', { progressBar: true });
+        this.toastrService.success(this.translate.instant('TOASTRS.SUCCESS_ACCEPT_PROPOSAL'), '', { progressBar: true });
         this.router.navigate(['/pages/licitacoes/gestor-revisor-licitacao']);
       },
       error: error => {
-        console.log('Erro completo:', error);
-        let backendMsg = '';
-      
-        if (error?.error) {
-          // Caso o backend envie um array de erros
-          if (Array.isArray(error.error.errors) && error.error.errors.length > 0) {
-            backendMsg = error.error.errors[0];
-          }
-          // Caso o backend envie um objeto com campo message
-          else if (typeof error.error === 'object' && error.error.message) {
-            backendMsg = error.error.message;
-          }
-          // Caso o backend envie texto puro ou JSON string
-          else if (typeof error.error === 'string') {
-            try {
-              const parsed = JSON.parse(error.error);
-              backendMsg = parsed.message || error.error;
-            } catch {
-              backendMsg = error.error;
-            }
-          }
-        } else if (error?.message) {
-          backendMsg = error.message;
-        }
-      
-        if (backendMsg && typeof backendMsg === 'string' && backendMsg.length > 5) {
-          this.toastrService.error(backendMsg, '', { progressBar: true });
-        } else {
-          this.toastrService.error(this.translate.instant('TOASTRS.ERROR_ACCEPT_PROPOSAL'), '', { progressBar: true });
-        }
+        const errorMessage = error?.error?.message || this.translate.instant('TOASTRS.ERROR_ACCEPT_PROPOSAL');
+        this.toastrService.error(errorMessage, '', { progressBar: true });
       }
     });
   }

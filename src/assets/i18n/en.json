@@ -921,6 +921,8 @@
     "ERROR_UPDATE_NAME": "Error while updating the user",
     "ERROR_ACCEPT_PROPOSAL": "Error while accepting proposal",
     "SUCCESS_ACCEPT_PROPOSAL": "Proposal successfully accepted!",
+    "SUCCESS_REFUSE_PROPOSAL": "Proposal successfully refused!",
+    "ERROR_REFUSE_PROPOSAL": "Error while refusing proposal!",
     "ERROR_BATCH_IN_ANALYSIS": "Cannot accept proposals while the batch is under analysis.",
     "MUST_OFFICE": "Position is required",
     "ERROR_INVALID_CODE": "The code already exists",
