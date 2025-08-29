@@ -926,7 +926,9 @@
     "ERROR_BID_APPROVED": "Erreur. L'offre n'a pas été approuvée",
     "BID_APPOVED": "Appel d'offres approuvé!",
     "ERROR_DOCUMENTS_MISSING": "Il manque des documents",
-    "ERROR_BATCH_IN_ANALYSIS": "Impossible d'accepter les propositions pendant que le lot est en cours d'analyse."
+    "ERROR_BATCH_IN_ANALYSIS": "Impossible d'accepter les propositions pendant que le lot est en cours d'analyse.",
+    "CANNOT_ACCEPT_ALLOTMENT_IN_ANALYSIS": "Impossible d'accepter les propositions pendant que le lot est en cours d'analyse.",
+    "CANNOT_REFUSE_ALLOTMENT_IN_ANALYSIS": "Impossible de refuser les propositions pendant que le lot est en cours d'analyse."
   },
   "MODAL_PROPOSAL": {
     "REFUSE": "Voulez-vous refuser cette proposition ?",
