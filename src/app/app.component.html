@@ -1,2 +1,13 @@
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<!-- PWA Install Button -->
+<div *ngIf="showInstallButton" class="pwa-install-banner" style="position: fixed; top: 0; left: 0; right: 0; background: #1976d2; color: white; padding: 10px; text-align: center; z-index: 9999;">
+  <span>Instalar SOL como aplicativo</span>
+  <button (click)="installPwa()" style="margin-left: 10px; background: white; color: #1976d2; border: none; padding: 5px 15px; border-radius: 3px; cursor: pointer;">
+    📱 Instalar
+  </button>
+  <button (click)="showInstallButton = false" style="margin-left: 5px; background: transparent; color: white; border: 1px solid white; padding: 5px 10px; border-radius: 3px; cursor: pointer;">
+    ✕
+  </button>
+</div>
+
 <router-outlet></router-outlet>

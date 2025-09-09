@@ -1,11 +1,12 @@
 // Simple Service Worker for SOL PWA
-const CACHE_NAME = 'sol-pwa-v1';
+const CACHE_NAME = 'sol-pwa-v5';
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
-  '/assets/icons/icon-192.webp',
-  '/assets/icons/icon-512.webp'
+  '/favicon.ico',
+  '/assets/images/pb-logos-project.png',
+  '/assets/images/trophy.png'
 ];
 
 // Install event - cache resources

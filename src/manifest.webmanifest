@@ -1,39 +1,37 @@
 {
-  "name": "SOL - Sistema Online de Licitação",
+  "name": "SOL Sistema",
   "short_name": "SOL",
-  "description": "Sistema Online de Licitação - Gestão completa de processos licitatórios",
+  "description": "Sistema Online de Licitação",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "orientation": "portrait-primary",
   "theme_color": "#1976d2",
   "background_color": "#ffffff",
-  "scope": "/",
-  "lang": "pt-BR",
-  "categories": ["government", "business", "productivity"],
+  "prefer_related_applications": false,
   "icons": [
     {
-      "src": "favicon.ico",
-      "type": "image/x-icon",
-      "sizes": "16x16 32x32 48x48",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/images/sol-logo.svg",
-      "type": "image/svg+xml",
-      "sizes": "any",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/images/pb-logos-project.png",
+      "src": "assets/images/trophy.png",
+      "sizes": "144x144",
       "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "assets/images/trophy.png",
+      "sizes": "192x192",
       "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/trophy.png",
       "sizes": "512x512",
-      "purpose": "any maskable"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/trophy.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

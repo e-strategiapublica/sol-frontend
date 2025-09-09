@@ -124,13 +124,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "defaultConfiguration": "",
           "options": {
-            "browserTarget": "ngv15:build:development"
+            "browserTarget": "sol-app-frontend:build:development"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngv15:build:production"
+              "browserTarget": "sol-app-frontend:build:production"
             },
             "development": {
               "browserTarget": "sol-app-frontend:build:development"
@@ -172,6 +171,5 @@
   },
   "cli": {
     "analytics": false
-  },
-  "defaultProject": "ngv15"
+  }
 }
