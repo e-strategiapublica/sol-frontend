@@ -19,6 +19,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/services/http-load.service';
 import { registerLocaleData } from '@angular/common';
 import { RankingComponent } from './components/ranking/ranking.component';
+import { BackendErrorHandlerService } from 'src/services/backend-error-handler.service';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -56,6 +57,7 @@ registerLocaleData(ptBr);
       multi: true,
     },
     { provide: LOCALE_ID, useValue: 'pt' },
+    BackendErrorHandlerService,
 
   ],
   bootstrap: [AppComponent],

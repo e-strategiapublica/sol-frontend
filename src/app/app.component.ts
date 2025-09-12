@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BackendErrorHandlerService } from 'src/services/backend-error-handler.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'sol-app-frontend';
 
-  
+  constructor(private backendErrorHandler: BackendErrorHandlerService) {
+    // Injeta o serviço para garantir que seja inicializado
+  }
 }

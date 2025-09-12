@@ -89,6 +89,14 @@ export class ProposalAcceptedComponent {
         this.router.navigate(['/pages/licitacoes/gestor-revisor-licitacao']);
       },
       error: (error: any) => {
+        // Verifica se é um erro estruturado - se for, deixa o BackendErrorHandlerService processar
+        if (error?.error && typeof error.error === 'object' && error.error.error && error.error.data) {
+          // É um erro estruturado, não faz nada aqui - o sistema global vai processar
+          console.log('Erro estruturado detectado no componente, deixando sistema global processar');
+          return;
+        }
+        
+        // Para erros não estruturados, usa o tratamento antigo
         let errorMessage = error?.error?.errors?.[0] || error?.error?.message || error?.message;
         
         // Traduzir chaves de erro do backend
