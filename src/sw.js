@@ -1,20 +1,20 @@
 // Simple Service Worker for SOL PWA
-const CACHE_NAME = 'sol-pwa-v5';
+const CACHE_NAME = 'sol-pwa-v12';
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
   '/favicon.ico',
-  '/assets/images/pb-logos-project.png',
-  '/assets/images/trophy.png'
+  '/assets/icons/icon-192x192.png',
+  '/assets/icons/icon-512x512.png'
 ];
 
 // Install event - cache resources
 self.addEventListener('install', function(event) {
+  self.skipWaiting(); // Force immediate activation
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(function(cache) {
-        console.log('SOL PWA: Cache opened');
         return cache.addAll(urlsToCache);
       })
   );
@@ -37,12 +37,12 @@ self.addEventListener('fetch', function(event) {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', function(event) {
+  self.clients.claim(); // Take control immediately
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
           if (cacheName !== CACHE_NAME) {
-            console.log('SOL PWA: Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
