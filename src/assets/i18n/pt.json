@@ -1261,6 +1261,17 @@
   "SERVICE_UNAVAILABLE": "Serviço indisponível",
   "DATABASE_CONNECTION_ERROR": "Erro de conexão com o banco de dados",
   "EXTERNAL_SERVICE_ERROR": "Erro no serviço externo: {{service}}",
-  "TIMEOUT_ERROR": "Erro de timeout"
+  "TIMEOUT_ERROR": "Erro de timeout",
+  "BID_INVALID_STATUS": "Status de licitação inválido: {{status}}",
+  "BID_DOCUMENT_GENERATION_FAILED": "Falha na geração de documento da licitação",
+  "BID_DOWNLOAD_FAILED": "Falha no download do arquivo da licitação",
+  "BID_UNAUTHORIZED_ACCESS": "Acesso não autorizado à licitação",
+  "USER_REGISTRATION_FAILED": "Falha no cadastro do usuário",
+  "USER_UPDATE_FAILED": "Falha na atualização dos dados do usuário",
+  "USER_EMAIL_ALREADY_EXISTS": "E-mail {{email}} já está cadastrado no sistema",
+  "USER_PASSWORD_UPDATE_FAILED": "Falha na atualização da senha do usuário",
+  "USER_VERIFICATION_CODE_INVALID": "Código de verificação inválido",
+  "USER_VERIFICATION_CODE_EXPIRED": "Código de verificação expirado",
+  "PLATFORM_CONFIG_NOT_FOUND": "Configurações da plataforma não encontradas"
 }
 }

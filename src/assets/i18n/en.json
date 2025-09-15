@@ -8,7 +8,7 @@
     "MEETING": "Online Bidding System",
     "REGISTER_SUPPLIER": "Register as a Supplier"
   },
-  "LOGIN":{
+  "LOGIN": {
     "ACCESS_BUTTON": "login"
   },
   "FIRST_ACCESS": {
@@ -35,7 +35,6 @@
     "USER": "User",
     "LOGOUT": "Logout"
   },
-
   "TERMS": {
     "TITLE": "TERMS OF USE and PRIVACY POLICY",
     "PARTE1": "These Terms of Use determine the rules, responsibilities, and obligations for the USER of the SOL platform (Online Bidding Solution).",
@@ -127,7 +126,7 @@
     "INVITATION": "Invitation to tender number",
     "RELEASE_TITLE": "Bid awaiting release",
     "RELEASE_PART1": "The bid",
-    "RELEASE_PART2": "pending publication."    
+    "RELEASE_PART2": "pending publication."
   },
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
@@ -287,7 +286,6 @@
     "CLOSE_DATE_ERROR": "The bidding deadline is from 0 to 120 days",
     "EXECUTION_DATE_ERROR": "The deadline for execution of the tender is from 1 to 720 days",
     "TIEBREAKER_DATE_ERROR": "The deadline for the bid tiebreaker is from 0 to 10 days"
-
   },
   "ERROR_MESSAGES": {
     "INVALID": "Invalid!",
@@ -692,7 +690,7 @@
     "ORIGINAL_CONTRACT": "Download original contract",
     "ACCEPT": "Accept",
     "REFUSE": "Refuse",
-    "NO_INVITED_SUPPLIERS":"No invited suppliers"
+    "NO_INVITED_SUPPLIERS": "No invited suppliers"
   },
   "AGREEMENTS": {
     "AGREEMENTS": "Agreements",
@@ -787,7 +785,6 @@
     "SPECIFICATION_REQUEST": "Specification is mandatory!",
     "SUSTENTABLE": "Check here if the item is sustainable",
     "PLACEHOLDER_SEARCH": "Search by name, ID, category, segment or Unit of measure"
-
   },
   "GROUP_ITEMS": {
     "DATA_GROUP": "Group Data",
@@ -1163,7 +1160,7 @@
   "REPORT": {
     "DATA": "Date"
   },
-  "CLASSES":{
+  "CLASSES": {
     "SECTION_TITLE": "Classes",
     "SEARCH": "Search by code, group description or class description",
     "NEW_CLASS": "New Class",
@@ -1172,14 +1169,14 @@
     "CLASS_DESCRIPTION_TITLE": "Class Description",
     "ACTIONS": "Actions",
     "REGISTER_CLASS_TITLE": "Register Class",
-    "GROUP_TITLE": "Group",    
+    "GROUP_TITLE": "Group",
     "DESCRIPTION": "Description",
     "EDIT_CLASS_TITLE": "Editar Class",
     "ENTER_CLASS_DESCRIPTION": "Enter a description of the class",
     "DELETE_TITLE": "Delete Class",
     "ARE_YOU_SURE": "Are you sure you want to delete the class "
   },
-  "PDM":{
+  "PDM": {
     "SECTION_TITLE": "PDM",
     "SEARCH": "Search by class, code or name",
     "NEW_PDM": "New PDM",
@@ -1215,7 +1212,7 @@
     "DETAIL_CREATED_AT_TITLE": "Creation date",
     "EDIT_PDM_TITLE": "Edit PDM"
   },
-  "ITEMS":{
+  "ITEMS": {
     "SECTION_TITLE": "Artículos",
     "SEARCH": "Search by PDM, class, code or name",
     "NEW_ITEM": "New Article",
@@ -1239,14 +1236,14 @@
     "PROPERTY_LIST_TITLE": "Property List",
     "ENTER_PROPERTY": "Enter property",
     "IS_REQUIRED": "Required",
-    "DETAIL_GROUP_TITLE":"Group",
+    "DETAIL_GROUP_TITLE": "Group",
     "DETAIL_CLASS_TITLE": "Class",
     "DETAIL_CODE_TITLE": "Code",
     "DETAIL_NAME_TITLE": "Name",
     "DETAIL_PROPERTY_LIST_TITLE": "Property list",
     "DETAIL_CREATED_AT_TITLE": "Creation date",
     "EDIT_ITEM_TITLE": "Edit Article",
-    "PROPERTY_REQUIRED": "Property required!"     
+    "PROPERTY_REQUIRED": "Property required!"
   },
   "WORKPLAN": {
     "SECTION_TITLE": "New work plan",
@@ -1297,6 +1294,17 @@
     "SERVICE_UNAVAILABLE": "Service unavailable",
     "DATABASE_CONNECTION_ERROR": "Database connection error",
     "EXTERNAL_SERVICE_ERROR": "External service error: {{service}}",
-    "TIMEOUT_ERROR": "Timeout error"
+    "TIMEOUT_ERROR": "Timeout error",
+    "BID_INVALID_STATUS": "Invalid bid status: {{status}}",
+    "BID_DOCUMENT_GENERATION_FAILED": "Bid document generation failed",
+    "BID_DOWNLOAD_FAILED": "Bid file download failed",
+    "BID_UNAUTHORIZED_ACCESS": "Unauthorized access to bid",
+    "USER_REGISTRATION_FAILED": "User registration failed",
+    "USER_UPDATE_FAILED": "User data update failed",
+    "USER_EMAIL_ALREADY_EXISTS": "Email {{email}} is already registered in the system",
+    "USER_PASSWORD_UPDATE_FAILED": "User password update failed",
+    "USER_VERIFICATION_CODE_INVALID": "Invalid verification code",
+    "USER_VERIFICATION_CODE_EXPIRED": "Verification code expired",
+    "PLATFORM_CONFIG_NOT_FOUND": "Platform configuration not found"
   }
 }
