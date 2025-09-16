@@ -1,4 +1,11 @@
 {
+  "PWA": {
+    "INSTALL_TITLE": "Instalar SOL",
+    "INSTALL_MESSAGE": "Añade SOL a tu pantalla de inicio para acceso rápido y experiencia mejorada.",
+    "INSTALL": "Instalar",
+    "INSTALLING": "Instalando...",
+    "DISMISS": "Ahora no"
+  },
   "SIGN-UP": { 
     "TITLE": "Bienvenido al sistema en línea de licitación. Para acceder a la plataforma, inicie sesión a continuación.",
     "SUBTITLE": "Crea y sigue tus licitaciones con mayor agilidad.",
