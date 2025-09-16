@@ -1,0 +1,37 @@
+{
+  "cacheName": "sol-pwa",
+  "version": "v13",
+  "urlsToCache": [
+    "/",
+    "/index.html",
+    "/manifest.webmanifest",
+    "/favicon.ico",
+    "/assets/icons/icon-192x192.png",
+    "/assets/icons/icon-512x512.png"
+  ],
+  "cacheStrategies": [
+    {
+      "name": "static-assets",
+      "pattern": "\\.(js|css|png|jpg|jpeg|svg|ico|woff|woff2)$",
+      "strategy": "cache-first",
+      "maxAge": 86400000,
+      "maxEntries": 100
+    },
+    {
+      "name": "api-calls",
+      "pattern": "/api/",
+      "strategy": "network-first",
+      "maxAge": 300000,
+      "maxEntries": 50
+    },
+    {
+      "name": "html-pages",
+      "pattern": "\\.html$",
+      "strategy": "stale-while-revalidate",
+      "maxAge": 3600000,
+      "maxEntries": 25
+    }
+  ],
+  "updateCheckInterval": 60000,
+  "enableLogging": true
+}
