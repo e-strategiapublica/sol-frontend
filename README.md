@@ -37,6 +37,49 @@ O uso de `crypto-js` permanece **apenas** para operações de hash SHA256 (ex: g
 
 ---
 
+## 📱 PWA (Progressive Web App)
+
+O SOL foi refatorado para implementar uma arquitetura PWA completa com funcionalidades offline, instalação nativa e cache inteligente.
+
+### Funcionalidades PWA Implementadas
+
+- ✅ **Service Worker Modular**: Estratégias de cache configuráveis
+- ✅ **Instalação Nativa**: Suporte Android, iOS e Desktop  
+- ✅ **Funcionamento Offline**: Cache inteligente de recursos
+- ✅ **Banner de Instalação**: UI responsiva e multilíngue
+- ✅ **Arquitetura Reativa**: Serviços baseados em RxJS
+- ✅ **Configuração JSON**: Service Worker configurável via arquivo
+
+### Testando PWA em Desenvolvimento
+
+Para testar funcionalidades PWA completas, é **altamente recomendado** usar ngrok para expor a aplicação via HTTPS:
+
+```bash
+# 1. Iniciar servidor de desenvolvimento
+ng serve
+
+# 2. Em outro terminal, expor via ngrok
+ngrok http http://localhost:4200/
+
+# 3. Acessar URL do ngrok (ex: https://abc123.ngrok.io)
+```
+
+**Por que usar ngrok?**
+- PWA requer HTTPS para funcionar completamente
+- Permite testar instalação em dispositivos móveis reais
+- Simula ambiente de produção mais fielmente
+- Habilita todas as funcionalidades do Service Worker
+
+### Documentação PWA
+
+A documentação completa da arquitetura PWA está disponível em:
+- `docs/README_PWA.md` - Visão geral e guia de início
+- `docs/PWA_ARCHITECTURE.md` - Arquitetura técnica detalhada
+- `docs/SERVICE_WORKER_CONFIG_GUIDE.md` - Configuração do Service Worker
+- `docs/PWA_COMPONENTS_SERVICES_API.md` - API de componentes e serviços
+
+---
+
 ## 🚀 Iniciando o Servidor de Desenvolvimento
 
 Para iniciar o servidor de desenvolvimento, utilize o comando abaixo:
@@ -46,6 +89,18 @@ ng serve
 ```
 
 O aplicativo estará disponível em [http://localhost:4200](http://localhost:4200).
+
+### Para Testes PWA (Recomendado)
+
+```bash
+# Terminal 1: Servidor Angular
+ng serve
+
+# Terminal 2: Exposição HTTPS via ngrok
+ngrok http http://localhost:4200/
+```
+
+Acesse a URL fornecida pelo ngrok para testar funcionalidades PWA completas.
 
 ---
 
