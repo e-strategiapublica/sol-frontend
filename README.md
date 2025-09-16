@@ -122,10 +122,35 @@ ng generate directive|pipe|service|class|guard|interface|enum|module nome
 
 ## 📁 Build do Projeto
 
-Para realizar o build do projeto, execute:
+Para realizar o build do projeto, você pode usar diferentes gerenciadores de pacotes:
 
+### Usando Angular CLI
 ```bash
 ng build
+```
+
+### Usando npm
+```bash
+npm run build
+```
+
+### Usando yarn
+```bash
+yarn build
+```
+
+### Build de Produção
+Para build otimizado para produção:
+
+```bash
+# Angular CLI
+ng build --prod
+
+# npm
+npm run build:prod
+
+# yarn  
+yarn build:prod
 ```
 
 Os arquivos serão gerados no diretório `dist/`.
