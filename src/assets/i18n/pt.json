@@ -938,6 +938,13 @@
   },
   "DOWNLOAD_COMPLEMENTARY_ARCHIVES": "Baixar Arquivos Complementares",
   "DOWNLOAD_EDITAL_DRAFT": "Baixar rascunho do edital",
+  "PWA": {
+    "INSTALL_TITLE": "Instalar SOL",
+    "INSTALL_MESSAGE": "Adicione o SOL à sua tela inicial para acesso rápido e experiência melhorada.",
+    "INSTALL": "Instalar",
+    "INSTALLING": "Instalando...",
+    "DISMISS": "Agora não"
+  },
   "ENDPOINT_NAME": {
     "ASSOCIATION": "Entidade",
     "AGREEMENT": "Convênio",

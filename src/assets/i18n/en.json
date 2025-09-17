@@ -1,4 +1,11 @@
 {
+  "PWA": {
+    "INSTALL_TITLE": "Install SOL",
+    "INSTALL_MESSAGE": "Add SOL to your home screen for quick access and enhanced experience.",
+    "INSTALL": "Install",
+    "INSTALLING": "Installing...",
+    "DISMISS": "Not now"
+  },
   "SIGN-UP": {
     "TITLE": "Welcome to the online bidding system. To access the platform, please log in below.",
     "SUBTITLE": "Create and track your bids more efficiently.",

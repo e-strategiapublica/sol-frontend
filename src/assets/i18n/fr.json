@@ -1,4 +1,11 @@
 {
+  "PWA": {
+    "INSTALL_TITLE": "Installer SOL",
+    "INSTALL_MESSAGE": "Ajoutez SOL à votre écran d'accueil pour un accès rapide et une expérience améliorée.",
+    "INSTALL": "Installer",
+    "INSTALLING": "Installation...",
+    "DISMISS": "Pas maintenant"
+  },
   "SIGN-UP": {
     "TITLE": "Bienvenue sur le système de soumission en ligne. Pour accéder à la plateforme, veuillez vous connecter ci-dessous.",
     "SUBTITLE": "Créez et suivez vos appels d'offres avec plus d'agilité.",
