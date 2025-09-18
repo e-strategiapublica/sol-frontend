@@ -27,24 +27,23 @@ export class AppComponent implements OnInit, OnDestroy {
   private async initializePwa(): Promise<void> {
     try {
       await this.pwaManager.initialize();
-      console.log('SOL PWA: Manager initialized successfully');
       
       // Subscribe to PWA state changes
       this.pwaManager.state$
         .pipe(takeUntil(this.destroy$))
         .subscribe(state => {
-          console.log('SOL PWA: State updated', state);
+          // PWA state updated
         });
 
       // Subscribe to install events
       this.pwaManager.installEvents$
         .pipe(takeUntil(this.destroy$))
         .subscribe(event => {
-          console.log('SOL PWA: Install event', event);
+          // PWA install event
         });
 
     } catch (error) {
-      console.error('SOL PWA: Failed to initialize PWA manager', error);
+      console.error('Failed to initialize PWA manager', error);
     }
   }
 }

@@ -24,7 +24,7 @@ export class PwaInstallService {
   }
 
   private initializeEventListeners(): void {
-    // Listen for beforeinstallprompt
+    // Listen for beforeinstallprompt (Chrome, Edge)
     fromEvent(window, 'beforeinstallprompt')
       .pipe(
         tap((event: Event) => {
@@ -67,6 +67,9 @@ export class PwaInstallService {
         })
       )
       .subscribe();
+
+    // Firefox/Safari fallback - check after page load
+    this.checkFirefoxInstallability();
   }
 
   public get canInstall(): boolean {
@@ -82,6 +85,12 @@ export class PwaInstallService {
     const promptEvent = currentState.deferredPrompt || (window as any).deferredPrompt;
     
     if (!promptEvent) {
+      // Check if it's Firefox and show instructions
+      if (this.isFirefox()) {
+        this.showFirefoxInstallInstructions();
+        return { outcome: 'accepted' }; // Return success to hide banner
+      }
+      
       this.emitEvent({ 
         type: 'error', 
         data: { message: 'No install prompt available' } 
@@ -128,6 +137,63 @@ export class PwaInstallService {
     }, 1000);
   }
 
+  private checkFirefoxInstallability(): void {
+    // Wait for page to fully load
+    setTimeout(() => {
+      if (this.isFirefox() && !this.canInstall && !this.isInstalled) {
+        // Simplified check for Firefox - just check basic requirements
+        const hasServiceWorker = 'serviceWorker' in navigator;
+        const hasManifest = !!document.querySelector('link[rel="manifest"]');
+        const isSecure = location.protocol === 'https:' || 
+                        location.hostname === 'localhost' || 
+                        location.hostname === '127.0.0.1' ||
+                        location.hostname.includes('192.168.') || // Local network
+                        location.hostname.includes('10.0.') ||    // Local network
+                        location.hostname.endsWith('.local');     // mDNS
+        
+        if (hasServiceWorker && hasManifest && isSecure) {
+          this.updateInstallState({
+            canInstall: true,
+            isInstalled: false,
+            deferredPrompt: null
+          });
+          this.emitEvent({ 
+            type: 'beforeinstallprompt', 
+            data: { browser: 'firefox' } 
+          });
+        }
+      }
+    }, 3000); // Wait 3 seconds for everything to load
+  }
+
+  private isFirefox(): boolean {
+    const userAgent = navigator.userAgent.toLowerCase();
+    // Check for Firefox desktop and mobile (including Fenix/Firefox for Android)
+    return userAgent.includes('firefox') || 
+           userAgent.includes('fxios') || // Firefox iOS
+           (userAgent.includes('mobile') && userAgent.includes('gecko')); // Firefox Android
+  }
+
+  private isPwaReady(): boolean {
+    // Check if Service Worker is registered
+    const hasServiceWorker = 'serviceWorker' in navigator;
+    
+    // Check if manifest is present
+    const manifestLink = document.querySelector('link[rel="manifest"]');
+    const hasManifest = !!manifestLink;
+    
+    // Check if running on HTTPS or localhost
+    const isSecure = location.protocol === 'https:' || 
+                    location.hostname === 'localhost' || 
+                    location.hostname === '127.0.0.1';
+    
+    // Check if not already installed
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+                        (window.navigator as any).standalone === true;
+    
+    return hasServiceWorker && hasManifest && isSecure && !isStandalone;
+  }
+
   private updateInstallState(newState: Partial<InstallPromptState>): void {
     const currentState = this.installStateSubject.value;
     this.installStateSubject.next({ ...currentState, ...newState });
@@ -136,4 +202,27 @@ export class PwaInstallService {
   private emitEvent(event: PwaInstallEvent): void {
     this.installEventsSubject.next(event);
   }
+
+  private showFirefoxInstallInstructions(): void {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isMobile = userAgent.includes('mobile') || userAgent.includes('android') || userAgent.includes('iphone');
+    
+    let message;
+    if (isMobile) {
+      message = `Para instalar o SOL no Firefox Mobile:
+
+1. Toque no menu (⋮) no canto superior direito
+2. Toque em "Instalar" ou "Adicionar à tela inicial"
+3. Confirme a instalação`;
+    } else {
+      message = `Para instalar o SOL no Firefox:
+
+1. Clique no ícone de menu (☰) no canto superior direito
+2. Procure por "Instalar" ou "Adicionar à tela inicial"
+3. Confirme a instalação`;
+    }
+
+    alert(message);
+  }
+
 }
