@@ -250,6 +250,7 @@ import { PwaInstallEvent } from '../models/pwa-config.interface';
         justify-content: center;
       }
     }
+
   `]
 })
 export class PwaInstallBannerComponent implements OnInit, OnDestroy {
