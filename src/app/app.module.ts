@@ -19,7 +19,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/services/http-load.service';
 import { registerLocaleData } from '@angular/common';
 import { RankingComponent } from './components/ranking/ranking.component';
-import { BackendErrorHandlerService } from 'src/services/backend-error-handler.service';
+import { PwaModule } from './core/pwa/pwa.module';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -49,6 +49,7 @@ registerLocaleData(ptBr);
         deps: [HttpClient],
       },
     }),
+    PwaModule,
   ],
   providers: [
     {
