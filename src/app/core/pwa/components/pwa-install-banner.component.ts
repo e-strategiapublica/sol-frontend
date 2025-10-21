@@ -8,7 +8,7 @@ import { PwaInstallEvent } from '../models/pwa-config.interface';
   selector: 'app-pwa-install-banner',
   template: `
     <div 
-      *ngIf="(state$ | async)?.install.canInstall && showBanner" 
+      *ngIf="(state$ | async)?.install.canInstall && showBanner && isMobileDevice" 
       class="pwa-install-banner"
       [class.pwa-banner-visible]="showBanner">
       
@@ -257,12 +257,15 @@ export class PwaInstallBannerComponent implements OnInit, OnDestroy {
   public state$: Observable<PwaManagerState>;
   public showBanner = false;
   public isInstalling = false;
+  public isMobileDevice = false;
   
   private destroy$ = new Subject<void>();
   private dismissedKey = 'pwa-banner-dismissed';
+  private resizeListener: () => void;
 
   constructor(private pwaManager: PwaManagerService) {
     this.state$ = this.pwaManager.state$;
+    this.isMobileDevice = this.detectMobileDevice();
   }
 
   ngOnInit(): void {
@@ -277,6 +280,12 @@ export class PwaInstallBannerComponent implements OnInit, OnDestroy {
         return;
       }
     }
+
+    // Listen for window resize to update mobile detection
+    this.resizeListener = () => {
+      this.isMobileDevice = this.detectMobileDevice();
+    };
+    window.addEventListener('resize', this.resizeListener);
 
     // Listen for install state changes
     this.state$
@@ -308,6 +317,11 @@ export class PwaInstallBannerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    
+    // Remove resize listener to prevent memory leaks
+    if (this.resizeListener) {
+      window.removeEventListener('resize', this.resizeListener);
+    }
   }
 
   public async installApp(): Promise<void> {
@@ -329,5 +343,26 @@ export class PwaInstallBannerComponent implements OnInit, OnDestroy {
   public dismissBanner(): void {
     this.showBanner = false;
     localStorage.setItem(this.dismissedKey, new Date().toISOString());
+  }
+
+  private detectMobileDevice(): boolean {
+    // Detecta dispositivos mobile usando User Agent
+    const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+    
+    // Verifica se é um dispositivo mobile baseado no User Agent
+    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+    const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
+    
+    // Verifica se é um dispositivo touch
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    // Verifica o tamanho da tela (considerando tablets como mobile para PWA)
+    const isSmallScreen = window.innerWidth <= 1024;
+    
+    // Considera mobile se atender pelo menos 2 dos 3 critérios
+    const mobileIndicators = [isMobileUserAgent, isTouchDevice, isSmallScreen];
+    const mobileCount = mobileIndicators.filter(indicator => indicator).length;
+    
+    return mobileCount >= 2;
   }
 }
