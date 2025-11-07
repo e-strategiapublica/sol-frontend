@@ -15,7 +15,7 @@
     "MEETING": "Online Bidding System",
     "REGISTER_SUPPLIER": "Register as a Supplier"
   },
-  "LOGIN":{
+  "LOGIN": {
     "ACCESS_BUTTON": "login"
   },
   "FIRST_ACCESS": {
@@ -42,7 +42,6 @@
     "USER": "User",
     "LOGOUT": "Logout"
   },
-
   "TERMS": {
     "TITLE": "TERMS OF USE and PRIVACY POLICY",
     "PARTE1": "These Terms of Use determine the rules, responsibilities, and obligations for the USER of the SOL platform (Online Bidding Solution).",
@@ -134,7 +133,7 @@
     "INVITATION": "Invitation to tender number",
     "RELEASE_TITLE": "Bid awaiting release",
     "RELEASE_PART1": "The bid",
-    "RELEASE_PART2": "pending publication."    
+    "RELEASE_PART2": "pending publication."
   },
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
@@ -294,7 +293,6 @@
     "CLOSE_DATE_ERROR": "The bidding deadline is from 0 to 120 days",
     "EXECUTION_DATE_ERROR": "The deadline for execution of the tender is from 1 to 720 days",
     "TIEBREAKER_DATE_ERROR": "The deadline for the bid tiebreaker is from 0 to 10 days"
-
   },
   "ERROR_MESSAGES": {
     "INVALID": "Invalid!",
@@ -699,7 +697,7 @@
     "ORIGINAL_CONTRACT": "Download original contract",
     "ACCEPT": "Accept",
     "REFUSE": "Refuse",
-    "NO_INVITED_SUPPLIERS":"No invited suppliers"
+    "NO_INVITED_SUPPLIERS": "No invited suppliers"
   },
   "AGREEMENTS": {
     "AGREEMENTS": "Agreements",
@@ -794,7 +792,6 @@
     "SPECIFICATION_REQUEST": "Specification is mandatory!",
     "SUSTENTABLE": "Check here if the item is sustainable",
     "PLACEHOLDER_SEARCH": "Search by name, ID, category, segment or Unit of measure"
-
   },
   "GROUP_ITEMS": {
     "DATA_GROUP": "Group Data",
@@ -928,14 +925,21 @@
     "ERROR_UPDATE_NAME": "Error while updating the user",
     "ERROR_ACCEPT_PROPOSAL": "Error while accepting proposal",
     "SUCCESS_ACCEPT_PROPOSAL": "Proposal successfully accepted!",
-    "EDIT_BID": "Edit Agreement",
-    "CREATE_BID": "New Group",
+    "SUCCESS_REFUSE_PROPOSAL": "Proposal successfully refused!",
+    "ERROR_REFUSE_PROPOSAL": "Error while refusing proposal!",
+    "ERROR_BATCH_IN_ANALYSIS": "Cannot accept proposals while the batch is under analysis.",
+    "CANNOT_ACCEPT_ALLOTMENT_IN_ANALYSIS": "Cannot accept proposals while the batch is under analysis.",
+    "CANNOT_REFUSE_ALLOTMENT_IN_ANALYSIS": "Cannot refuse proposals while the batch is under analysis.",
+    "PROPOSAL_NOT_FOUND": "Proposal not found!",
+    "PROPOSAL_ALREADY_DELETED": "This contract has already been deleted!",
+    "BID_CLOSED": "Cannot register proposal for closed bidding!",
+    "REGISTRATION_FAILED": "Could not register this proposal!",
+    "DUPLICATE_PROPOSAL": "A proposal has already been sent for this bidding!",
     "MUST_OFFICE": "Position is required",
     "ERROR_INVALID_CODE": "The code already exists",
     "INTERNAL_SERVER_ERROR": "Internal server error",
-    "ERROR_INVALID_CLASS_ID": "Invalid class id",
     "ERROR_BID_APPROVED": "Error. The tender was not approved",
-    "BID_APPOVED": "Bid approved!",
+    "BID_APPROVED": "Tender approved!",
     "ERROR_DOCUMENTS_MISSING": "Documents are missing"
   },
   "MODAL_PROPOSAL": {
@@ -1163,7 +1167,7 @@
   "REPORT": {
     "DATA": "Date"
   },
-  "CLASSES":{
+  "CLASSES": {
     "SECTION_TITLE": "Classes",
     "SEARCH": "Search by code, group description or class description",
     "NEW_CLASS": "New Class",
@@ -1172,14 +1176,14 @@
     "CLASS_DESCRIPTION_TITLE": "Class Description",
     "ACTIONS": "Actions",
     "REGISTER_CLASS_TITLE": "Register Class",
-    "GROUP_TITLE": "Group",    
+    "GROUP_TITLE": "Group",
     "DESCRIPTION": "Description",
     "EDIT_CLASS_TITLE": "Editar Class",
     "ENTER_CLASS_DESCRIPTION": "Enter a description of the class",
     "DELETE_TITLE": "Delete Class",
     "ARE_YOU_SURE": "Are you sure you want to delete the class "
   },
-  "PDM":{
+  "PDM": {
     "SECTION_TITLE": "PDM",
     "SEARCH": "Search by class, code or name",
     "NEW_PDM": "New PDM",
@@ -1215,7 +1219,7 @@
     "DETAIL_CREATED_AT_TITLE": "Creation date",
     "EDIT_PDM_TITLE": "Edit PDM"
   },
-  "ITEMS":{
+  "ITEMS": {
     "SECTION_TITLE": "Artículos",
     "SEARCH": "Search by PDM, class, code or name",
     "NEW_ITEM": "New Article",
@@ -1226,10 +1230,7 @@
     "ACTIONS": "Actions",
     "REGISTER_ITEM_TITLE": "Register Article",
     "GROUP_TITLE": "Group",
-    "CLASS_TITLE": "Class",
     "CLASS_REQUIRED": "The class is required!",
-    "PDM_TITLE": "PDM",
-    "ENTER_PDM": "Enter PDM",
     "PDM_REQUIRED": "The PDM is required!",
     "ENTER_CODE": "Enter 9 digit code",
     "CODE_REQUIRED": "The code is required!",
@@ -1242,14 +1243,14 @@
     "PROPERTY_LIST_TITLE": "Property List",
     "ENTER_PROPERTY": "Enter property",
     "IS_REQUIRED": "Required",
-    "DETAIL_GROUP_TITLE":"Group",
+    "DETAIL_GROUP_TITLE": "Group",
     "DETAIL_CLASS_TITLE": "Class",
     "DETAIL_CODE_TITLE": "Code",
     "DETAIL_NAME_TITLE": "Name",
     "DETAIL_PROPERTY_LIST_TITLE": "Property list",
     "DETAIL_CREATED_AT_TITLE": "Creation date",
     "EDIT_ITEM_TITLE": "Edit Article",
-    "PROPERTY_REQUIRED": "Property required!"     
+    "PROPERTY_REQUIRED": "Property required!"
   },
   "WORKPLAN": {
     "SECTION_TITLE": "New work plan",
@@ -1261,5 +1262,56 @@
     "PLACEHOLDER_PRICE": "Enter price",
     "BTN_CREATE": "Create work plan",
     "UNIT_LIST_SUBTITLE": "Unit List"
+  },
+  "BACKEND_ERRORS": {
+    "PROPOSAL_NOT_FOUND": "Proposal with ID {{proposal_id}} not found",
+    "PROPOSAL_ALREADY_DELETED": "Proposal with ID {{proposal_id}} has already been deleted",
+    "BID_NOT_FOUND": "Bid with ID {{bid_id}} not found",
+    "BID_ALREADY_DELETED": "Bid with ID {{bid_id}} has already been deleted",
+    "BID_CLOSED": "Cannot register proposal for closed bid",
+    "BID_NOT_OPEN": "Bid is not open to receive proposals",
+    "ASSOCIATION_NOT_FOUND": "Association with ID {{association_id}} not found",
+    "ASSOCIATION_ALREADY_DELETED": "Association with ID {{association_id}} has already been deleted",
+    "ASSOCIATION_INACTIVE": "Association is inactive",
+    "ALLOTMENT_NOT_FOUND": "Allotment with ID {{allotment_id}} not found",
+    "ALLOTMENT_ALREADY_DELETED": "Allotment with ID {{allotment_id}} has already been deleted",
+    "ALLOTMENT_UNDER_ANALYSIS": "Cannot refuse proposals while allotment {{allotment_id}} is under analysis",
+    "CANNOT_ACCEPT_ALLOTMENT_IN_ANALYSIS": "Cannot accept proposals while allotment {{allotment_id}} is under analysis",
+    "CANNOT_REFUSE_ALLOTMENT_UNDER_ANALYSIS": "Cannot refuse proposals while allotment {{allotment_id}} is under analysis",
+    "FILE_NOT_FOUND": "File with ID {{file_id}} not found",
+    "FILE_UPLOAD_FAILED": "File upload failed",
+    "FILE_TYPE_NOT_ALLOWED": "File type not allowed: {{file_type}}",
+    "FILE_SIZE_EXCEEDED": "File size exceeded. Maximum allowed: {{max_size}}MB",
+    "INVALID_FILE_FORMAT": "Invalid file format",
+    "DUPLICATE_PROPOSAL": "A proposal has already been sent for this bid",
+    "REGISTRATION_FAILED": "Could not register this proposal",
+    "INVALID_PROPOSAL_STATUS": "Invalid proposal status: {{status}}",
+    "PROPOSAL_DEADLINE_EXCEEDED": "Proposal deadline exceeded",
+    "INSUFFICIENT_PERMISSIONS": "Insufficient permissions to perform this action",
+    "UNAUTHORIZED_ACCESS": "Unauthorized access",
+    "INVALID_CREDENTIALS": "Invalid credentials",
+    "SESSION_EXPIRED": "Session expired",
+    "ACCOUNT_LOCKED": "Account locked",
+    "INVALID_INPUT": "Invalid input: {{field}}",
+    "REQUIRED_FIELD_MISSING": "Required field missing: {{field}}",
+    "INVALID_FORMAT": "Invalid format for field: {{field}}",
+    "VALUE_OUT_OF_RANGE": "Value out of range for field: {{field}}",
+    "DUPLICATE_ENTRY": "Duplicate entry for: {{field}}",
+    "INTERNAL_SERVER_ERROR": "Internal server error",
+    "SERVICE_UNAVAILABLE": "Service unavailable",
+    "DATABASE_CONNECTION_ERROR": "Database connection error",
+    "EXTERNAL_SERVICE_ERROR": "External service error: {{service}}",
+    "TIMEOUT_ERROR": "Timeout error",
+    "BID_INVALID_STATUS": "Invalid bid status: {{status}}",
+    "BID_DOCUMENT_GENERATION_FAILED": "Bid document generation failed",
+    "BID_DOWNLOAD_FAILED": "Bid file download failed",
+    "BID_UNAUTHORIZED_ACCESS": "Unauthorized access to bid",
+    "USER_REGISTRATION_FAILED": "User registration failed",
+    "USER_UPDATE_FAILED": "User data update failed",
+    "USER_EMAIL_ALREADY_EXISTS": "Email {{email}} is already registered in the system",
+    "USER_PASSWORD_UPDATE_FAILED": "User password update failed",
+    "USER_VERIFICATION_CODE_INVALID": "Invalid verification code",
+    "USER_VERIFICATION_CODE_EXPIRED": "Verification code expired",
+    "PLATFORM_CONFIG_NOT_FOUND": "Platform configuration not found"
   }
 }

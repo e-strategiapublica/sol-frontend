@@ -58,6 +58,7 @@ registerLocaleData(ptBr);
       multi: true,
     },
     { provide: LOCALE_ID, useValue: 'pt' },
+    BackendErrorHandlerService,
 
   ],
   bootstrap: [AppComponent],

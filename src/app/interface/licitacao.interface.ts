@@ -21,6 +21,10 @@ export interface LicitationInterface {
     quantity: string;
     site: string;
     proposal: string;
+    // Propriedades adicionais baseadas no backend
+    add_allotment?: any[];
+    start_at?: string;
+    bid_type?: string;
 }
 export interface AllotmentRequestDto {
     allotment_name: string;
